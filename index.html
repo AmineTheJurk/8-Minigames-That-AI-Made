@@ -1,0 +1,2463 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html>
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Classic Games Gallery</title>
+<style>
+  /* Layout: a centered heading over a responsive grid of game cards, each with a picture, a name and a play link. */
+  :root {
+    --bg: #f4f1ea;
+    --card: #fffdf8;
+    --ink: #22201b;
+    --muted: #6f6a5f;
+    --line: rgba(34,32,27,.12);
+    --accent: #c4572c;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #13120f;
+      --card: #1c1b17;
+      --ink: #efeade;
+      --muted: #a09a8c;
+      --line: rgba(239,234,222,.12);
+      --accent: #ff8a5c;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #13120f;
+    --card: #1c1b17;
+    --ink: #efeade;
+    --muted: #a09a8c;
+    --line: rgba(239,234,222,.12);
+    --accent: #ff8a5c;
+    color-scheme: dark;
+  }
+  html, body { min-height: 100%; margin: 0; background: var(--bg); color: var(--ink); }
+  body {
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    padding: max(24px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(32px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
+    box-sizing: border-box;
+  }
+  header { max-width: 980px; margin: 0 auto 28px; text-align: center; }
+  h1 { font-size: clamp(22px, 4.5vw, 36px); line-height: 1.2; margin: 0 0 8px; letter-spacing: -.01em; text-wrap: balance; }
+  .sub { margin: 0; color: var(--muted); font-size: 15px; }
+  .grid {
+    max-width: 980px; margin: 0 auto; display: grid; gap: 18px;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  }
+  .game {
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
+    display: flex; flex-direction: column; min-width: 0;
+  }
+  .game svg { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; }
+  .body { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+  h2 { font-size: 17px; margin: 0; }
+  .body p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.5; }
+  .play {
+    margin-top: auto; align-self: flex-start; padding-top: 10px; font-size: 14px; font-weight: 700;
+    color: var(--accent); text-decoration: none;
+  }
+  .play:hover { text-decoration: underline; }
+  .play:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+  .play { background: none; border: 0; padding: 10px 0 0; cursor: pointer; font: inherit; font-size: 14px; font-weight: 700; color: var(--accent); }
+  #player { position: fixed; inset: 0; background: var(--bg); display: flex; flex-direction: column; z-index: 10; }
+  #player[hidden] { display: none; }
+  #player .bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 14px; border-bottom: 1px solid var(--line); color: var(--ink); font-weight: 700; }
+  #player button { background: transparent; border: 1px solid var(--line); border-radius: 6px; padding: 6px 12px; font: inherit; color: var(--ink); cursor: pointer; }
+  #player iframe { flex: 1; width: 100%; border: 0; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<header>
+  <h1>I Asked AI to make some classic games. And these were the results, ENJOYYYYY!</h1>
+  <p class="sub">Eight little games, all played in the browser.</p>
+</header>
+
+<main class="grid">
+
+  <article class="game">
+    <svg viewBox="0 0 160 100" role="img" aria-label="Pong court with two paddles and a ball">
+      <rect width="160" height="100" fill="#faf9f5"/>
+      <line x1="80" y1="0" x2="80" y2="100" stroke="#bbb" stroke-width="2" stroke-dasharray="6 6"/>
+      <rect x="10" y="36" width="5" height="28" fill="#2d6cdf"/>
+      <rect x="145" y="30" width="5" height="28" fill="#d9553a"/>
+      <circle cx="104" cy="46" r="4" fill="#222"/>
+    </svg>
+    <div class="body">
+      <h2>Pong</h2>
+      <p>Play against the computer. First to 7 points wins.</p>
+      <button class="play" type="button" data-title="Pong" data-src="&lt;!doctype html&gt;
+&lt;meta name=&quot;claude:viewport-fit-sides&quot; content=&quot;cover&quot;&gt;
+&lt;title&gt;Pong&lt;/title&gt;
+&lt;style&gt;
+  /* Layout: a centered court with the score above it; touch, mouse or keys move your paddle. */
+  :root {
+    --bg: #eceae4;
+    --court: #faf9f5;
+    --ink: #222;
+    --muted: #8a8a84;
+    --paddle-you: #2d6cdf;
+    --paddle-cpu: #d9553a;
+    --ball: #222;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme=&quot;light&quot;]) {
+      --bg: #0c0d10;
+      --court: #14161b;
+      --ink: #eef0f4;
+      --muted: #7a7f8a;
+      --paddle-you: #6fa0ff;
+      --paddle-cpu: #ff8a6a;
+      --ball: #eef0f4;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme=&quot;dark&quot;] {
+    --bg: #0c0d10;
+    --court: #14161b;
+    --ink: #eef0f4;
+    --muted: #7a7f8a;
+    --paddle-you: #6fa0ff;
+    --paddle-cpu: #ff8a6a;
+    --ball: #eef0f4;
+    color-scheme: dark;
+  }
+  html, body { height: 100%; margin: 0; background: var(--bg); color: var(--ink); overflow: hidden; }
+  body {
+    font-family: ui-sans-serif, system-ui, -apple-system, &quot;Segoe UI&quot;, sans-serif;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+    padding: max(12px, env(safe-area-inset-top, 0px)) max(12px, env(safe-area-inset-right, 0px)) max(12px, env(safe-area-inset-bottom, 0px)) max(12px, env(safe-area-inset-left, 0px));
+    box-sizing: border-box;
+  }
+  .score { font-size: 34px; font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: .05em; }
+  .score span { display: inline-block; min-width: 2ch; text-align: center; }
+  #wrap { position: relative; width: min(94vw, 70vh * 1.5, 640px); aspect-ratio: 3 / 2; }
+  canvas { width: 100%; height: 100%; display: block; border-radius: 10px; background: var(--court); touch-action: none; cursor: none; }
+  #overlay {
+    position: absolute; inset: 0; border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 10px; background: color-mix(in srgb, var(--bg) 84%, transparent); text-align: center; padding: 16px;
+  }
+  #overlay[hidden] { display: none; }
+  #overlay h2 { margin: 0; font-size: 26px; }
+  #overlay p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.5; }
+  button {
+    font: inherit; font-weight: 700; font-size: 15px; color: #fff; background: var(--paddle-you); border: 0; border-radius: 8px;
+    padding: 10px 22px; cursor: pointer; margin-top: 6px;
+  }
+  button:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+&lt;/style&gt;
+
+&lt;div class=&quot;score&quot;&gt;&lt;span id=&quot;p1&quot; style=&quot;color:var(--paddle-you)&quot;&gt;0&lt;/span&gt; : &lt;span id=&quot;p2&quot; style=&quot;color:var(--paddle-cpu)&quot;&gt;0&lt;/span&gt;&lt;/div&gt;
+
+&lt;div id=&quot;wrap&quot;&gt;
+  &lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
+  &lt;div id=&quot;overlay&quot;&gt;
+    &lt;h2 id=&quot;ovTitle&quot;&gt;Pong&lt;/h2&gt;
+    &lt;p id=&quot;ovText&quot;&gt;You are the blue paddle on the left. Move with the mouse, touch, or the up and down arrow keys. First to 7 wins.&lt;/p&gt;
+    &lt;button id=&quot;play&quot;&gt;Start&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+(() =&gt; {
+  const $ = id =&gt; document.getElementById(id);
+  const cv = $(&#x27;c&#x27;), ctx = cv.getContext(&#x27;2d&#x27;);
+  const W = 600, H = 400;           // logical playfield
+  const WIN = 7;
+  let sc = 1;
+
+  const you = { x: 14, y: H / 2 - 45, w: 10, h: 90 };
+  const cpu = { x: W - 24, y: H / 2 - 45, w: 10, h: 90 };
+  let ball, scores, running, serveDir, cpuTarget, keys = {}, pointerY = null;
+
+  function size() {
+    const d = Math.min(window.devicePixelRatio || 1, 2);
+    const w = $(&#x27;wrap&#x27;).clientWidth, h = $(&#x27;wrap&#x27;).clientHeight;
+    cv.width = Math.round(w * d); cv.height = Math.round(h * d);
+    sc = (w * d) / W;
+    ctx.setTransform(sc, 0, 0, sc, 0, 0);
+  }
+
+  function serve(dir) {
+    ball = { x: W / 2, y: H / 2, vx: 0, vy: 0, r: 7, wait: 0.8 };
+    serveDir = dir;
+  }
+
+  function startGame() {
+    scores = [0, 0];
+    running = true;
+    updateScore();
+    serve(Math.random() &lt; 0.5 ? 1 : -1);
+    $(&#x27;overlay&#x27;).hidden = true;
+  }
+
+  function updateScore() {
+    $(&#x27;p1&#x27;).textContent = scores[0];
+    $(&#x27;p2&#x27;).textContent = scores[1];
+  }
+
+  function pointScored(who) {
+    scores[who]++;
+    updateScore();
+    if (scores[who] &gt;= WIN) {
+      running = false;
+      $(&#x27;ovTitle&#x27;).textContent = who === 0 ? &#x27;You win&#x27; : &#x27;The computer wins&#x27;;
+      $(&#x27;ovText&#x27;).textContent = `Final score ${scores[0]} to ${scores[1]}.`;
+      $(&#x27;play&#x27;).textContent = &#x27;Play again&#x27;;
+      $(&#x27;overlay&#x27;).hidden = false;
+      return;
+    }
+    serve(who === 0 ? 1 : -1);
+  }
+
+  function update(dt) {
+    if (!running) return;
+
+    // your paddle
+    const up = keys.ArrowUp || keys.KeyW ? -1 : 0;
+    const dn = keys.ArrowDown || keys.KeyS ? 1 : 0;
+    if (up || dn) you.y += (up + dn) * 520 * dt;
+    if (pointerY !== null) you.y = pointerY - you.h / 2;
+    you.y = Math.max(0, Math.min(H - you.h, you.y));
+
+    // computer paddle: follows the ball with a little lag and error
+    const speed = 300;
+    const target = ball.y - cpu.h / 2 + Math.sin(performance.now() / 400) * 10;
+    cpu.y += Math.max(-speed * dt, Math.min(speed * dt, target - cpu.y));
+    cpu.y = Math.max(0, Math.min(H - cpu.h, cpu.y));
+
+    if (ball.wait &gt; 0) {
+      ball.wait -= dt;
+      if (ball.wait &lt;= 0) {
+        const a = (Math.random() * 0.6 - 0.3);
+        const s = 320;
+        ball.vx = serveDir * Math.cos(a) * s;
+        ball.vy = Math.sin(a) * s;
+      }
+      return;
+    }
+
+    ball.x += ball.vx * dt;
+    ball.y += ball.vy * dt;
+
+    if (ball.y - ball.r &lt; 0) { ball.y = ball.r; ball.vy = Math.abs(ball.vy); }
+    if (ball.y + ball.r &gt; H) { ball.y = H - ball.r; ball.vy = -Math.abs(ball.vy); }
+
+    // paddle hits
+    const hitPaddle = (p, dirSign) =&gt; {
+      if (ball.x + ball.r &gt;= p.x &amp;&amp; ball.x - ball.r &lt;= p.x + p.w &amp;&amp;
+          ball.y &gt;= p.y - ball.r &amp;&amp; ball.y &lt;= p.y + p.h + ball.r) {
+        const off = (ball.y - (p.y + p.h / 2)) / (p.h / 2);   // -1..1
+        const speed = Math.min(620, Math.hypot(ball.vx, ball.vy) * 1.05);
+        const a = off * 0.9;
+        ball.vx = dirSign * Math.cos(a) * speed;
+        ball.vy = Math.sin(a) * speed;
+        ball.x = dirSign &gt; 0 ? p.x + p.w + ball.r : p.x - ball.r;
+        return true;
+      }
+      return false;
+    };
+    if (ball.vx &lt; 0) hitPaddle(you, 1);
+    else if (ball.vx &gt; 0) hitPaddle(cpu, -1);
+
+    if (ball.x &lt; -20) pointScored(1);
+    else if (ball.x &gt; W + 20) pointScored(0);
+  }
+
+  function draw() {
+    const css = getComputedStyle(document.documentElement);
+    const v = n =&gt; css.getPropertyValue(n).trim();
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = v(&#x27;--court&#x27;);
+    ctx.fillRect(0, 0, W, H);
+
+    ctx.fillStyle = v(&#x27;--muted&#x27;);
+    for (let y = 8; y &lt; H; y += 28) ctx.fillRect(W / 2 - 2, y, 4, 16);
+
+    ctx.fillStyle = v(&#x27;--paddle-you&#x27;);
+    ctx.fillRect(you.x, you.y, you.w, you.h);
+    ctx.fillStyle = v(&#x27;--paddle-cpu&#x27;);
+    ctx.fillRect(cpu.x, cpu.y, cpu.w, cpu.h);
+
+    if (ball) {
+      ctx.fillStyle = v(&#x27;--ball&#x27;);
+      ctx.beginPath();
+      ctx.arc(ball.x, ball.y, ball.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  function toLogicalY(clientY) {
+    const r = cv.getBoundingClientRect();
+    return (clientY - r.top) / r.height * H;
+  }
+
+  cv.addEventListener(&#x27;pointermove&#x27;, e =&gt; { if (running) pointerY = toLogicalY(e.clientY); });
+  cv.addEventListener(&#x27;pointerdown&#x27;, e =&gt; { if (running) pointerY = toLogicalY(e.clientY); });
+  cv.addEventListener(&#x27;pointerleave&#x27;, () =&gt; { pointerY = null; });
+
+  window.addEventListener(&#x27;keydown&#x27;, e =&gt; {
+    keys[e.code] = true;
+    if ([&#x27;ArrowUp&#x27;, &#x27;ArrowDown&#x27;].includes(e.code)) e.preventDefault();
+    if (e.code === &#x27;Space&#x27; &amp;&amp; !running) { e.preventDefault(); startGame(); }
+  });
+  window.addEventListener(&#x27;keyup&#x27;, e =&gt; { keys[e.code] = false; });
+
+  $(&#x27;play&#x27;).addEventListener(&#x27;click&#x27;, startGame);
+  window.addEventListener(&#x27;resize&#x27;, size);
+
+  size();
+  scores = [0, 0];
+  serve(1);
+  ball.wait = 9999;
+  updateScore();
+
+  let last = performance.now();
+  function frame(now) {
+    const dt = Math.min(0.03, (now - last) / 1000);
+    last = now;
+    update(dt);
+    draw();
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+&lt;/script&gt;
+">Play →</button>
+    </div>
+  </article>
+
+  <article class="game">
+    <svg viewBox="0 0 160 100" role="img" aria-label="Grid of face-down and matched cards">
+      <rect width="160" height="100" fill="#f4efe6"/>
+      <g>
+        <rect x="22" y="14" width="26" height="32" rx="4" fill="#3e5a6b"/>
+        <rect x="56" y="14" width="26" height="32" rx="4" fill="#3e5a6b"/>
+        <rect x="90" y="14" width="26" height="32" rx="4" fill="#cfe8d8"/>
+        <rect x="124" y="14" width="26" height="32" rx="4" fill="#3e5a6b"/>
+        <rect x="22" y="54" width="26" height="32" rx="4" fill="#3e5a6b"/>
+        <rect x="56" y="54" width="26" height="32" rx="4" fill="#cfe8d8"/>
+        <rect x="90" y="54" width="26" height="32" rx="4" fill="#3e5a6b"/>
+        <rect x="124" y="54" width="26" height="32" rx="4" fill="#cfe8d8"/>
+      </g>
+    </svg>
+    <div class="body">
+      <h2>Memory Match</h2>
+      <p>Flip two cards at a time and find every matching pair in as few moves as you can.</p>
+      <button class="play" type="button" data-title="Memory Match" data-src="&lt;!doctype html&gt;
+&lt;meta name=&quot;claude:viewport-fit-sides&quot; content=&quot;cover&quot;&gt;
+&lt;title&gt;Memory Match&lt;/title&gt;
+&lt;style&gt;
+  /* Layout: a grid of face-down cards centered in the window, with move and time counters above. */
+  :root {
+    --bg: #f4efe6;
+    --ink: #2b2620;
+    --muted: #8b8172;
+    --card-back: #3e5a6b;
+    --card-back-ink: rgba(255,255,255,.35);
+    --card-face: #fffdf7;
+    --line: rgba(43,38,32,.14);
+    --accent: #c4572c;
+    --match: #3f8c62;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme=&quot;light&quot;]) {
+      --bg: #15130f;
+      --ink: #efe8da;
+      --muted: #9b9282;
+      --card-back: #34506a;
+      --card-back-ink: rgba(255,255,255,.22);
+      --card-face: #24211b;
+      --line: rgba(239,232,218,.14);
+      --accent: #ff8a5c;
+      --match: #7fd3a0;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme=&quot;dark&quot;] {
+    --bg: #15130f;
+    --ink: #efe8da;
+    --muted: #9b9282;
+    --card-back: #34506a;
+    --card-back-ink: rgba(255,255,255,.22);
+    --card-face: #24211b;
+    --line: rgba(239,232,218,.14);
+    --accent: #ff8a5c;
+    --match: #7fd3a0;
+    color-scheme: dark;
+  }
+  html, body { min-height: 100%; margin: 0; background: var(--bg); color: var(--ink); }
+  body {
+    font-family: ui-sans-serif, system-ui, -apple-system, &quot;Segoe UI&quot;, sans-serif;
+    display: flex; flex-direction: column; align-items: center; gap: 16px;
+    padding: max(16px, env(safe-area-inset-top, 0px)) max(12px, env(safe-area-inset-right, 0px)) max(16px, env(safe-area-inset-bottom, 0px)) max(12px, env(safe-area-inset-left, 0px));
+    box-sizing: border-box;
+  }
+  header { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; justify-content: center; }
+  h1 { font-size: 18px; margin: 0; letter-spacing: .01em; }
+  .stat { font-variant-numeric: tabular-nums; font-size: 14px; color: var(--muted); }
+  .stat b { color: var(--ink); font-size: 18px; margin-left: 4px; }
+  .seg { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+  .seg button {
+    font: inherit; font-size: 13px; background: transparent; color: var(--muted); border: 0; padding: 7px 12px; cursor: pointer;
+  }
+  .seg button[aria-pressed=&quot;true&quot;] { background: var(--ink); color: var(--bg); }
+  #board {
+    display: grid; gap: 8px; width: min(92vw, 520px);
+    grid-template-columns: repeat(var(--cols, 4), 1fr);
+  }
+  .card {
+    position: relative; aspect-ratio: 3 / 4; perspective: 800px; cursor: pointer; border: 0; padding: 0; background: none;
+  }
+  .inner {
+    position: absolute; inset: 0; transition: transform .35s ease; transform-style: preserve-3d; border-radius: 10px;
+  }
+  .card.flipped .inner, .card.matched .inner { transform: rotateY(180deg); }
+  .face, .back {
+    position: absolute; inset: 0; border-radius: 10px; backface-visibility: hidden; -webkit-backface-visibility: hidden;
+    display: flex; align-items: center; justify-content: center; font-size: clamp(22px, 5vw, 36px);
+  }
+  .back {
+    background: var(--card-back);
+    background-image: repeating-linear-gradient(45deg, transparent 0 8px, var(--card-back-ink) 8px 9px);
+    border: 1px solid var(--line);
+  }
+  .face {
+    transform: rotateY(180deg);
+    background: var(--card-face);
+    border: 1px solid var(--line);
+  }
+  .card.matched .face { background: color-mix(in srgb, var(--match) 22%, var(--card-face)); }
+  .card.matched { cursor: default; }
+  .card:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 10px; }
+  #done[hidden] { display: none; }
+  #done {
+    text-align: center; font-size: 15px; color: var(--ink); display: flex; flex-direction: column; gap: 8px; align-items: center;
+  }
+  #done button {
+    font: inherit; font-weight: 700; font-size: 15px; color: #fff; background: var(--accent); border: 0; border-radius: 8px;
+    padding: 9px 20px; cursor: pointer;
+  }
+  @media (prefers-reduced-motion: reduce) { .inner { transition: none; } }
+&lt;/style&gt;
+
+&lt;header&gt;
+  &lt;h1&gt;Memory Match&lt;/h1&gt;
+  &lt;span class=&quot;stat&quot;&gt;Moves &lt;b id=&quot;moves&quot;&gt;0&lt;/b&gt;&lt;/span&gt;
+  &lt;span class=&quot;stat&quot;&gt;Time &lt;b id=&quot;time&quot;&gt;0:00&lt;/b&gt;&lt;/span&gt;
+  &lt;div class=&quot;seg&quot; role=&quot;group&quot; aria-label=&quot;Board size&quot;&gt;
+    &lt;button id=&quot;s4&quot; aria-pressed=&quot;true&quot;&gt;4 × 4&lt;/button&gt;
+    &lt;button id=&quot;s6&quot; aria-pressed=&quot;false&quot;&gt;6 × 4&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/header&gt;
+
+&lt;div id=&quot;board&quot; role=&quot;grid&quot; aria-label=&quot;Cards&quot;&gt;&lt;/div&gt;
+
+&lt;div id=&quot;done&quot; hidden&gt;
+  &lt;p id=&quot;doneText&quot;&gt;&lt;/p&gt;
+  &lt;button id=&quot;again&quot;&gt;Play again&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+(() =&gt; {
+  const $ = id =&gt; document.getElementById(id);
+  const SYMBOLS = [&#x27;🌿&#x27;, &#x27;🍋&#x27;, &#x27;🐚&#x27;, &#x27;🌙&#x27;, &#x27;🔥&#x27;, &#x27;🍄&#x27;, &#x27;🪁&#x27;, &#x27;🧭&#x27;, &#x27;🌵&#x27;, &#x27;🐸&#x27;, &#x27;🎲&#x27;, &#x27;🧩&#x27;];
+  const board = $(&#x27;board&#x27;);
+
+  let cols = 4, pairs = 8;
+  let cards = [], first = null, lock = false, moves = 0, matched = 0;
+  let startAt = null, timerId = null;
+
+  function shuffle(a) {
+    for (let i = a.length - 1; i &gt; 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+
+  function build() {
+    clearInterval(timerId);
+    board.innerHTML = &#x27;&#x27;;
+    board.style.setProperty(&#x27;--cols&#x27;, cols);
+    const picks = shuffle(SYMBOLS.slice()).slice(0, pairs);
+    const deck = shuffle(picks.concat(picks));
+    cards = deck.map((sym, i) =&gt; {
+      const btn = document.createElement(&#x27;button&#x27;);
+      btn.className = &#x27;card&#x27;;
+      btn.setAttribute(&#x27;aria-label&#x27;, &#x27;Hidden card&#x27;);
+      btn.innerHTML = `&lt;div class=&quot;inner&quot;&gt;&lt;div class=&quot;back&quot;&gt;&lt;/div&gt;&lt;div class=&quot;face&quot;&gt;${sym}&lt;/div&gt;&lt;/div&gt;`;
+      btn.addEventListener(&#x27;click&#x27;, () =&gt; flip(i));
+      board.appendChild(btn);
+      return { sym, el: btn, open: false, done: false };
+    });
+    first = null; lock = false; moves = 0; matched = 0; startAt = null;
+    $(&#x27;moves&#x27;).textContent = 0;
+    $(&#x27;time&#x27;).textContent = &#x27;0:00&#x27;;
+    $(&#x27;done&#x27;).hidden = true;
+  }
+
+  function flip(i) {
+    const c = cards[i];
+    if (lock || c.open || c.done) return;
+    if (startAt === null) {
+      startAt = performance.now();
+      timerId = setInterval(tick, 250);
+    }
+    c.open = true;
+    c.el.classList.add(&#x27;flipped&#x27;);
+    c.el.setAttribute(&#x27;aria-label&#x27;, c.sym);
+
+    if (first === null) {
+      first = c;
+      return;
+    }
+
+    moves++;
+    $(&#x27;moves&#x27;).textContent = moves;
+    const second = c;
+    if (first.sym === second.sym) {
+      first.done = second.done = true;
+      first.el.classList.add(&#x27;matched&#x27;);
+      second.el.classList.add(&#x27;matched&#x27;);
+      matched++;
+      first = null;
+      if (matched === pairs) finish();
+    } else {
+      lock = true;
+      const a = first;
+      setTimeout(() =&gt; {
+        a.open = second.open = false;
+        a.el.classList.remove(&#x27;flipped&#x27;);
+        second.el.classList.remove(&#x27;flipped&#x27;);
+        a.el.setAttribute(&#x27;aria-label&#x27;, &#x27;Hidden card&#x27;);
+        second.el.setAttribute(&#x27;aria-label&#x27;, &#x27;Hidden card&#x27;);
+        lock = false;
+      }, 800);
+      first = null;
+    }
+  }
+
+  function tick() {
+    if (startAt === null) return;
+    const s = Math.floor((performance.now() - startAt) / 1000);
+    $(&#x27;time&#x27;).textContent = Math.floor(s / 60) + &#x27;:&#x27; + String(s % 60).padStart(2, &#x27;0&#x27;);
+  }
+
+  function finish() {
+    clearInterval(timerId);
+    tick();
+    $(&#x27;doneText&#x27;).textContent = `Solved in ${moves} moves and ${$(&#x27;time&#x27;).textContent}.`;
+    $(&#x27;done&#x27;).hidden = false;
+  }
+
+  function setSize(c, p) {
+    cols = c; pairs = p;
+    $(&#x27;s4&#x27;).setAttribute(&#x27;aria-pressed&#x27;, c === 4);
+    $(&#x27;s6&#x27;).setAttribute(&#x27;aria-pressed&#x27;, c === 6);
+    build();
+  }
+
+  $(&#x27;s4&#x27;).addEventListener(&#x27;click&#x27;, () =&gt; setSize(4, 8));
+  $(&#x27;s6&#x27;).addEventListener(&#x27;click&#x27;, () =&gt; setSize(6, 12));
+  $(&#x27;again&#x27;).addEventListener(&#x27;click&#x27;, build);
+
+  build();
+})();
+&lt;/script&gt;
+">Play →</button>
+    </div>
+  </article>
+
+  <article class="game">
+    <svg viewBox="0 0 160 100" role="img" aria-label="Rows of colored bricks above a paddle and ball">
+      <rect width="160" height="100" fill="#fffdf8"/>
+      <g>
+        <rect x="8" y="10" width="22" height="9" rx="2" fill="#e3a33b"/><rect x="34" y="10" width="22" height="9" rx="2" fill="#e3a33b"/><rect x="60" y="10" width="22" height="9" rx="2" fill="#e3a33b"/><rect x="86" y="10" width="22" height="9" rx="2" fill="#e3a33b"/><rect x="112" y="10" width="22" height="9" rx="2" fill="#e3a33b"/><rect x="138" y="10" width="14" height="9" rx="2" fill="#e3a33b"/>
+        <rect x="8" y="23" width="22" height="9" rx="2" fill="#5b9bd5"/><rect x="34" y="23" width="22" height="9" rx="2" fill="#5b9bd5"/><rect x="60" y="23" width="22" height="9" rx="2" fill="#5b9bd5"/><rect x="86" y="23" width="22" height="9" rx="2" fill="#5b9bd5"/><rect x="112" y="23" width="22" height="9" rx="2" fill="#5b9bd5"/><rect x="138" y="23" width="14" height="9" rx="2" fill="#5b9bd5"/>
+        <rect x="8" y="36" width="22" height="9" rx="2" fill="#6fba7a"/><rect x="34" y="36" width="22" height="9" rx="2" fill="#6fba7a"/><rect x="60" y="36" width="22" height="9" rx="2" fill="#6fba7a"/><rect x="86" y="36" width="22" height="9" rx="2" fill="#6fba7a"/><rect x="112" y="36" width="22" height="9" rx="2" fill="#6fba7a"/><rect x="138" y="36" width="14" height="9" rx="2" fill="#6fba7a"/>
+      </g>
+      <rect x="60" y="86" width="40" height="6" rx="3" fill="#2a2622"/>
+      <circle cx="80" cy="74" r="4" fill="#d9482b"/>
+    </svg>
+    <div class="body">
+      <h2>Brick Breaker</h2>
+      <p>Bounce the ball off your paddle, clear every brick, and keep your three lives.</p>
+      <button class="play" type="button" data-title="Brick Breaker" data-src="&lt;!doctype html&gt;
+&lt;meta name=&quot;claude:viewport-fit-sides&quot; content=&quot;cover&quot;&gt;
+&lt;title&gt;Brick Breaker&lt;/title&gt;
+&lt;style&gt;
+  /* Layout: a fixed-proportion playfield centered in the window, with a score line above and an overlay for start and game over. */
+  :root {
+    --bg: #f2efe9;
+    --field: #fffdf8;
+    --ink: #2a2622;
+    --muted: #877f74;
+    --paddle: #2a2622;
+    --ball: #d9482b;
+    --accent: #d9482b;
+    --brick1: #e3a33b;
+    --brick2: #5b9bd5;
+    --brick3: #6fba7a;
+    --brick4: #b66bd1;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme=&quot;light&quot;]) {
+      --bg: #141210;
+      --field: #1d1b18;
+      --ink: #f0ebe2;
+      --muted: #9a9286;
+      --paddle: #f0ebe2;
+      --ball: #ff8a6a;
+      --accent: #ff8a6a;
+      --brick1: #f0b65a;
+      --brick2: #7db6e8;
+      --brick3: #8fd49a;
+      --brick4: #d092e6;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme=&quot;dark&quot;] {
+    --bg: #141210;
+    --field: #1d1b18;
+    --ink: #f0ebe2;
+    --muted: #9a9286;
+    --paddle: #f0ebe2;
+    --ball: #ff8a6a;
+    --accent: #ff8a6a;
+    --brick1: #f0b65a;
+    --brick2: #7db6e8;
+    --brick3: #8fd49a;
+    --brick4: #d092e6;
+    color-scheme: dark;
+  }
+  html, body { height: 100%; margin: 0; background: var(--bg); color: var(--ink); overflow: hidden; }
+  body {
+    font-family: ui-sans-serif, system-ui, -apple-system, &quot;Segoe UI&quot;, sans-serif;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+    padding: max(12px, env(safe-area-inset-top, 0px)) max(12px, env(safe-area-inset-right, 0px)) max(12px, env(safe-area-inset-bottom, 0px)) max(12px, env(safe-area-inset-left, 0px));
+    box-sizing: border-box;
+  }
+  .bar { display: flex; gap: 24px; font-variant-numeric: tabular-nums; font-size: 14px; color: var(--muted); }
+  .bar b { color: var(--ink); font-size: 18px; margin-left: 6px; }
+  #wrap { position: relative; width: min(92vw, calc((70vh) * 0.75), 420px); aspect-ratio: 3 / 4; }
+  canvas { width: 100%; height: 100%; display: block; border-radius: 10px; background: var(--field); touch-action: none; }
+  #overlay {
+    position: absolute; inset: 0; border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 10px; background: color-mix(in srgb, var(--bg) 85%, transparent); text-align: center; padding: 16px;
+  }
+  #overlay[hidden] { display: none; }
+  #overlay h2 { margin: 0; font-size: 26px; }
+  #overlay p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.5; }
+  button {
+    font: inherit; font-weight: 700; font-size: 15px; color: #fff; background: var(--accent); border: 0; border-radius: 8px;
+    padding: 10px 22px; cursor: pointer; margin-top: 6px;
+  }
+  button:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+&lt;/style&gt;
+
+&lt;div class=&quot;bar&quot;&gt;
+  &lt;span&gt;Score&lt;b id=&quot;score&quot;&gt;0&lt;/b&gt;&lt;/span&gt;
+  &lt;span&gt;Lives&lt;b id=&quot;lives&quot;&gt;3&lt;/b&gt;&lt;/span&gt;
+  &lt;span&gt;Level&lt;b id=&quot;level&quot;&gt;1&lt;/b&gt;&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;wrap&quot;&gt;
+  &lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
+  &lt;div id=&quot;overlay&quot;&gt;
+    &lt;h2 id=&quot;ovTitle&quot;&gt;Brick Breaker&lt;/h2&gt;
+    &lt;p id=&quot;ovText&quot;&gt;Move the paddle with the mouse, touch, or the left and right arrow keys. Clear every brick.&lt;/p&gt;
+    &lt;button id=&quot;play&quot;&gt;Start&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+(() =&gt; {
+  const $ = id =&gt; document.getElementById(id);
+  const cv = $(&#x27;c&#x27;), ctx = cv.getContext(&#x27;2d&#x27;);
+  const COLS = 8, ROWS = 6;
+
+  let W = 300, H = 400;          // logical size, set from the canvas on resize
+  let sc = 1;                    // scale from logical to device pixels
+  let paddle, ball, bricks, score, lives, level, running;
+  let targetX = null;
+  const keys = {};
+
+  function size() {
+    const d = Math.min(window.devicePixelRatio || 1, 2);
+    const w = $(&#x27;wrap&#x27;).clientWidth, h = $(&#x27;wrap&#x27;).clientHeight;
+    cv.width = Math.round(w * d); cv.height = Math.round(h * d);
+    sc = (w * d) / W;
+    ctx.setTransform(sc, 0, 0, sc, 0, 0);
+  }
+
+  function makeBricks() {
+    bricks = [];
+    const bw = (W - 24) / COLS, bh = 18;
+    for (let r = 0; r &lt; ROWS; r++) {
+      for (let c = 0; c &lt; COLS; c++) {
+        bricks.push({ x: 12 + c * bw + 2, y: 60 + r * (bh + 6), w: bw - 4, h: bh, row: r, alive: true });
+      }
+    }
+  }
+
+  function serve() {
+    ball = { x: W / 2, y: H - 60, vx: 0, vy: 0, r: 6, stuck: true };
+  }
+
+  function launch() {
+    const speed = 260 + level * 25;
+    const a = (Math.random() * 0.8 - 0.4) - Math.PI / 2 * 0;
+    ball.vx = Math.sin(a) * speed;
+    ball.vy = -Math.cos(a) * speed;
+    ball.stuck = false;
+  }
+
+  function newLevel() {
+    makeBricks();
+    paddle = { x: W / 2 - 40, y: H - 28, w: 80, h: 10 };
+    serve();
+  }
+
+  function start() {
+    score = 0; lives = 3; level = 1;
+    running = true;
+    newLevel();
+    updateBar();
+    $(&#x27;overlay&#x27;).hidden = true;
+  }
+
+  function updateBar() {
+    $(&#x27;score&#x27;).textContent = score;
+    $(&#x27;lives&#x27;).textContent = lives;
+    $(&#x27;level&#x27;).textContent = level;
+  }
+
+  function loseLife() {
+    lives--;
+    updateBar();
+    if (lives &lt;= 0) {
+      running = false;
+      $(&#x27;ovTitle&#x27;).textContent = &#x27;Game over&#x27;;
+      $(&#x27;ovText&#x27;).textContent = `You scored ${score}. Press start to play again.`;
+      $(&#x27;play&#x27;).textContent = &#x27;Play again&#x27;;
+      $(&#x27;overlay&#x27;).hidden = false;
+    } else {
+      serve();
+    }
+  }
+
+  function update(dt) {
+    if (!running) return;
+    // paddle control
+    const left = keys.ArrowLeft || keys.KeyA ? -1 : 0;
+    const right = keys.ArrowRight || keys.KeyD ? 1 : 0;
+    if (left || right) paddle.x += (left + right) * 520 * dt;
+    if (targetX !== null) paddle.x = targetX - paddle.w / 2;
+    paddle.x = Math.max(0, Math.min(W - paddle.w, paddle.x));
+
+    if (ball.stuck) {
+      ball.x = paddle.x + paddle.w / 2;
+      ball.y = paddle.y - ball.r - 1;
+      return;
+    }
+
+    // substep to avoid tunnelling through bricks
+    const steps = 4;
+    for (let s = 0; s &lt; steps; s++) {
+      ball.x += ball.vx * dt / steps;
+      ball.y += ball.vy * dt / steps;
+
+      if (ball.x - ball.r &lt; 0) { ball.x = ball.r; ball.vx = Math.abs(ball.vx); }
+      if (ball.x + ball.r &gt; W) { ball.x = W - ball.r; ball.vx = -Math.abs(ball.vx); }
+      if (ball.y - ball.r &lt; 0) { ball.y = ball.r; ball.vy = Math.abs(ball.vy); }
+
+      // paddle
+      if (ball.vy &gt; 0 &amp;&amp;
+          ball.y + ball.r &gt;= paddle.y &amp;&amp; ball.y + ball.r &lt;= paddle.y + paddle.h + 6 &amp;&amp;
+          ball.x &gt;= paddle.x - ball.r &amp;&amp; ball.x &lt;= paddle.x + paddle.w + ball.r) {
+        const hit = (ball.x - (paddle.x + paddle.w / 2)) / (paddle.w / 2); // -1..1
+        const speed = Math.hypot(ball.vx, ball.vy);
+        const a = hit * 1.0;                                             // steer by where it lands
+        ball.vx = Math.sin(a) * speed;
+        ball.vy = -Math.cos(a) * speed;
+        ball.y = paddle.y - ball.r;
+      }
+
+      // bricks
+      for (const b of bricks) {
+        if (!b.alive) continue;
+        if (ball.x + ball.r &gt; b.x &amp;&amp; ball.x - ball.r &lt; b.x + b.w &amp;&amp;
+            ball.y + ball.r &gt; b.y &amp;&amp; ball.y - ball.r &lt; b.y + b.h) {
+          b.alive = false;
+          score += 10 * (ROWS - b.row);
+          // bounce on the shallower overlap axis
+          const overlapX = Math.min(ball.x + ball.r - b.x, b.x + b.w - (ball.x - ball.r));
+          const overlapY = Math.min(ball.y + ball.r - b.y, b.y + b.h - (ball.y - ball.r));
+          if (overlapX &lt; overlapY) ball.vx = -ball.vx; else ball.vy = -ball.vy;
+          updateBar();
+          break;
+        }
+      }
+    }
+
+    if (ball.y - ball.r &gt; H) {
+      loseLife();
+      return;
+    }
+
+    if (bricks.every(b =&gt; !b.alive)) {
+      level++;
+      updateBar();
+      newLevel();
+    }
+  }
+
+  function draw() {
+    const css = getComputedStyle(document.documentElement);
+    const v = n =&gt; css.getPropertyValue(n).trim();
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = v(&#x27;--field&#x27;);
+    ctx.fillRect(0, 0, W, H);
+
+    const colors = [v(&#x27;--brick1&#x27;), v(&#x27;--brick2&#x27;), v(&#x27;--brick3&#x27;), v(&#x27;--brick4&#x27;)];
+    for (const b of bricks) {
+      if (!b.alive) continue;
+      ctx.fillStyle = colors[b.row % colors.length];
+      roundRect(b.x, b.y, b.w, b.h, 4);
+      ctx.fill();
+    }
+
+    if (paddle) {
+      ctx.fillStyle = v(&#x27;--paddle&#x27;);
+      roundRect(paddle.x, paddle.y, paddle.w, paddle.h, 5);
+      ctx.fill();
+    }
+
+    if (ball) {
+      ctx.fillStyle = v(&#x27;--ball&#x27;);
+      ctx.beginPath();
+      ctx.arc(ball.x, ball.y, ball.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    if (ball &amp;&amp; ball.stuck &amp;&amp; running) {
+      ctx.fillStyle = v(&#x27;--muted&#x27;);
+      ctx.font = &#x27;13px ui-sans-serif, system-ui, sans-serif&#x27;;
+      ctx.textAlign = &#x27;center&#x27;;
+      ctx.fillText(&#x27;Click or press Space to launch&#x27;, W / 2, H - 120);
+    }
+  }
+
+  function roundRect(x, y, w, h, r) {
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.arcTo(x + w, y, x + w, y + h, r);
+    ctx.arcTo(x + w, y + h, x, y + h, r);
+    ctx.arcTo(x, y + h, x, y, r);
+    ctx.arcTo(x, y, x + w, y, r);
+    ctx.closePath();
+  }
+
+  function toLogical(clientX) {
+    const r = cv.getBoundingClientRect();
+    return (clientX - r.left) / r.width * W;
+  }
+
+  // ---------- input ----------
+  cv.addEventListener(&#x27;pointermove&#x27;, e =&gt; { if (running) targetX = toLogical(e.clientX); });
+  cv.addEventListener(&#x27;pointerdown&#x27;, e =&gt; {
+    if (!running) return;
+    targetX = toLogical(e.clientX);
+    if (ball &amp;&amp; ball.stuck) launch();
+  });
+  cv.addEventListener(&#x27;pointerleave&#x27;, () =&gt; { targetX = null; });
+
+  window.addEventListener(&#x27;keydown&#x27;, e =&gt; {
+    keys[e.code] = true;
+    if (e.code === &#x27;Space&#x27;) {
+      e.preventDefault();
+      if (!running) start();
+      else if (ball &amp;&amp; ball.stuck) launch();
+    }
+    if ([&#x27;ArrowLeft&#x27;, &#x27;ArrowRight&#x27;].includes(e.code)) e.preventDefault();
+  });
+  window.addEventListener(&#x27;keyup&#x27;, e =&gt; { keys[e.code] = false; });
+  $(&#x27;play&#x27;).addEventListener(&#x27;click&#x27;, () =&gt; { start(); });
+  window.addEventListener(&#x27;resize&#x27;, size);
+
+  // Use a fixed logical playfield; the canvas stretches to fit.
+  function resetLogical() {
+    W = 300; H = 400;
+  }
+  resetLogical();
+  size();
+  newLevel();
+  paddle = { x: W / 2 - 40, y: H - 28, w: 80, h: 10 };
+  score = 0; lives = 3; level = 1;
+  updateBar();
+
+  let last = performance.now();
+  function frame(now) {
+    const dt = Math.min(0.03, (now - last) / 1000);
+    last = now;
+    update(dt);
+    draw();
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+&lt;/script&gt;
+">Play →</button>
+    </div>
+  </article>
+
+  <article class="game">
+    <svg viewBox="0 0 160 100" role="img" aria-label="A green snake curling toward a red food dot">
+      <rect width="160" height="100" fill="#dfe9d6"/>
+      <g fill="#2f7d4a">
+        <rect x="24" y="44" width="10" height="10" rx="2"/><rect x="36" y="44" width="10" height="10" rx="2"/><rect x="48" y="44" width="10" height="10" rx="2"/><rect x="60" y="44" width="10" height="10" rx="2"/><rect x="72" y="44" width="10" height="10" rx="2"/><rect x="72" y="32" width="10" height="10" rx="2"/><rect x="84" y="32" width="10" height="10" rx="2"/><rect x="96" y="32" width="10" height="10" rx="2"/>
+      </g>
+      <rect x="108" y="32" width="10" height="10" rx="2" fill="#1b5a33"/>
+      <circle cx="132" cy="58" r="5" fill="#d9482b"/>
+    </svg>
+    <div class="body">
+      <h2>Snake</h2>
+      <p>Steer with arrows, WASD or swipes. Eat food to grow, and don't bite your own tail.</p>
+      <button class="play" type="button" data-title="Snake" data-src="&lt;!doctype html&gt;
+&lt;meta name=&quot;claude:viewport-fit-sides&quot; content=&quot;cover&quot;&gt;
+&lt;title&gt;Snake&lt;/title&gt;
+&lt;style&gt;
+  /* Layout: a square board centered in the window, with score above and an overlay for start and game over. */
+  :root {
+    --bg: #eef3ea;
+    --board: #dfe9d6;
+    --grid: rgba(40,70,40,.06);
+    --ink: #1e2a1c;
+    --muted: #6c7d68;
+    --snake: #2f7d4a;
+    --head: #1b5a33;
+    --food: #d9482b;
+    --accent: #2f7d4a;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme=&quot;light&quot;]) {
+      --bg: #0f1510;
+      --board: #17201a;
+      --grid: rgba(180,230,180,.05);
+      --ink: #e4f0e0;
+      --muted: #8aa085;
+      --snake: #7fd49a;
+      --head: #b8f0c8;
+      --food: #ff7a5c;
+      --accent: #7fd49a;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme=&quot;dark&quot;] {
+    --bg: #0f1510;
+    --board: #17201a;
+    --grid: rgba(180,230,180,.05);
+    --ink: #e4f0e0;
+    --muted: #8aa085;
+    --snake: #7fd49a;
+    --head: #b8f0c8;
+    --food: #ff7a5c;
+    --accent: #7fd49a;
+    color-scheme: dark;
+  }
+  html, body { height: 100%; margin: 0; background: var(--bg); color: var(--ink); overflow: hidden; }
+  body {
+    font-family: ui-sans-serif, system-ui, -apple-system, &quot;Segoe UI&quot;, sans-serif;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
+    padding: max(12px, env(safe-area-inset-top, 0px)) max(12px, env(safe-area-inset-right, 0px)) max(12px, env(safe-area-inset-bottom, 0px)) max(12px, env(safe-area-inset-left, 0px));
+    box-sizing: border-box;
+  }
+  .scores { display: flex; gap: 26px; font-variant-numeric: tabular-nums; }
+  .scores div { text-align: center; }
+  .scores .k { font-size: 11px; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); }
+  .scores .v { font-size: 22px; font-weight: 700; }
+  #wrap { position: relative; width: min(92vw, 70vh, 460px); aspect-ratio: 1; }
+  canvas { width: 100%; height: 100%; display: block; border-radius: 10px; background: var(--board); touch-action: none; }
+  #overlay {
+    position: absolute; inset: 0; border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 10px; background: color-mix(in srgb, var(--bg) 82%, transparent); text-align: center; padding: 16px;
+  }
+  #overlay[hidden] { display: none; }
+  #overlay h2 { margin: 0; font-size: 26px; }
+  #overlay p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.5; }
+  button {
+    font: inherit; font-weight: 700; font-size: 15px; color: #fff; background: var(--accent); border: 0; border-radius: 8px;
+    padding: 10px 22px; cursor: pointer; margin-top: 6px;
+  }
+  button:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+  @media (prefers-reduced-motion: reduce) { canvas { transition: none; } }
+&lt;/style&gt;
+
+&lt;div class=&quot;scores&quot;&gt;
+  &lt;div&gt;&lt;div class=&quot;k&quot;&gt;Score&lt;/div&gt;&lt;div class=&quot;v&quot; id=&quot;score&quot;&gt;0&lt;/div&gt;&lt;/div&gt;
+  &lt;div&gt;&lt;div class=&quot;k&quot;&gt;Best&lt;/div&gt;&lt;div class=&quot;v&quot; id=&quot;best&quot;&gt;0&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;wrap&quot;&gt;
+  &lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
+  &lt;div id=&quot;overlay&quot;&gt;
+    &lt;h2 id=&quot;ovTitle&quot;&gt;Snake&lt;/h2&gt;
+    &lt;p id=&quot;ovText&quot;&gt;Arrow keys or WASD to steer. Swipe on touch screens. Eat the red dots and do not hit the walls or yourself.&lt;/p&gt;
+    &lt;button id=&quot;play&quot;&gt;Start&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+(() =&gt; {
+  const $ = id =&gt; document.getElementById(id);
+  const cv = $(&#x27;c&#x27;), ctx = cv.getContext(&#x27;2d&#x27;);
+  const N = 20;                  // board is N x N cells
+  const TICK_START = 130;        // ms per move at the start
+  let cell = 0, px = 0;
+
+  let snake, dir, nextDir, food, score, best, running, over, acc, last;
+  try { best = Number(localStorage.getItem(&#x27;snake-best&#x27;)) || 0; } catch (_) { best = 0; }
+
+  function sizeCanvas() {
+    const d = Math.min(window.devicePixelRatio || 1, 2);
+    px = Math.round($(&#x27;wrap&#x27;).clientWidth * d);
+    cv.width = px; cv.height = px;
+    cell = px / N;
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    draw();
+  }
+
+  function placeFood() {
+    let f;
+    do {
+      f = { x: Math.floor(Math.random() * N), y: Math.floor(Math.random() * N) };
+    } while (snake.some(s =&gt; s.x === f.x &amp;&amp; s.y === f.y));
+    food = f;
+  }
+
+  function reset() {
+    snake = [{ x: 9, y: 10 }, { x: 8, y: 10 }, { x: 7, y: 10 }];
+    dir = { x: 1, y: 0 }; nextDir = { x: 1, y: 0 };
+    score = 0; over = false; acc = 0; last = performance.now();
+    placeFood();
+    $(&#x27;score&#x27;).textContent = 0;
+  }
+
+  function start() {
+    reset();
+    running = true;
+    $(&#x27;overlay&#x27;).hidden = true;
+  }
+
+  function gameOver() {
+    running = false; over = true;
+    if (score &gt; best) {
+      best = score;
+      try { localStorage.setItem(&#x27;snake-best&#x27;, String(best)); } catch (_) {}
+    }
+    $(&#x27;best&#x27;).textContent = best;
+    $(&#x27;ovTitle&#x27;).textContent = &#x27;Game over&#x27;;
+    $(&#x27;ovText&#x27;).textContent = `You scored ${score}. Press start to try again.`;
+    $(&#x27;play&#x27;).textContent = &#x27;Play again&#x27;;
+    $(&#x27;overlay&#x27;).hidden = false;
+  }
+
+  function stepGame() {
+    dir = nextDir;
+    const head = { x: snake[0].x + dir.x, y: snake[0].y + dir.y };
+    if (head.x &lt; 0 || head.y &lt; 0 || head.x &gt;= N || head.y &gt;= N ||
+        snake.some(s =&gt; s.x === head.x &amp;&amp; s.y === head.y)) {
+      gameOver();
+      return;
+    }
+    snake.unshift(head);
+    if (head.x === food.x &amp;&amp; head.y === food.y) {
+      score++;
+      $(&#x27;score&#x27;).textContent = score;
+      placeFood();
+    } else {
+      snake.pop();
+    }
+  }
+
+  function setDir(x, y) {
+    // no reversing into yourself
+    if (x === -dir.x &amp;&amp; y === -dir.y) return;
+    nextDir = { x, y };
+  }
+
+  function draw() {
+    const css = getComputedStyle(document.documentElement);
+    const board = css.getPropertyValue(&#x27;--board&#x27;).trim();
+    const grid = css.getPropertyValue(&#x27;--grid&#x27;).trim();
+    const snakeC = css.getPropertyValue(&#x27;--snake&#x27;).trim();
+    const headC = css.getPropertyValue(&#x27;--head&#x27;).trim();
+    const foodC = css.getPropertyValue(&#x27;--food&#x27;).trim();
+
+    ctx.fillStyle = board;
+    ctx.fillRect(0, 0, px, px);
+    ctx.strokeStyle = grid;
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    for (let i = 1; i &lt; N; i++) {
+      ctx.moveTo(i * cell, 0); ctx.lineTo(i * cell, px);
+      ctx.moveTo(0, i * cell); ctx.lineTo(px, i * cell);
+    }
+    ctx.stroke();
+
+    if (!snake) return;
+
+    ctx.fillStyle = foodC;
+    ctx.beginPath();
+    ctx.arc((food.x + 0.5) * cell, (food.y + 0.5) * cell, cell * 0.32, 0, Math.PI * 2);
+    ctx.fill();
+
+    snake.forEach((s, i) =&gt; {
+      ctx.fillStyle = i === 0 ? headC : snakeC;
+      const pad = cell * 0.08;
+      const r = cell * 0.22;
+      roundRect(s.x * cell + pad, s.y * cell + pad, cell - pad * 2, cell - pad * 2, r);
+      ctx.fill();
+    });
+  }
+
+  function roundRect(x, y, w, h, r) {
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.arcTo(x + w, y, x + w, y + h, r);
+    ctx.arcTo(x + w, y + h, x, y + h, r);
+    ctx.arcTo(x, y + h, x, y, r);
+    ctx.arcTo(x, y, x + w, y, r);
+    ctx.closePath();
+  }
+
+  function frame(now) {
+    if (running &amp;&amp; !over) {
+      // speed up slightly with score
+      const interval = Math.max(60, TICK_START - score * 4);
+      acc += now - last;
+      last = now;
+      while (acc &gt;= interval &amp;&amp; running) {
+        acc -= interval;
+        stepGame();
+      }
+    } else {
+      last = now;
+    }
+    draw();
+    requestAnimationFrame(frame);
+  }
+
+  // ---------- input ----------
+  const keyDirs = {
+    ArrowUp: [0, -1], KeyW: [0, -1],
+    ArrowDown: [0, 1], KeyS: [0, 1],
+    ArrowLeft: [-1, 0], KeyA: [-1, 0],
+    ArrowRight: [1, 0], KeyD: [1, 0],
+  };
+  window.addEventListener(&#x27;keydown&#x27;, e =&gt; {
+    if (keyDirs[e.code]) {
+      e.preventDefault();
+      if (running) setDir(...keyDirs[e.code]);
+    }
+    if ((e.code === &#x27;Space&#x27; || e.code === &#x27;Enter&#x27;) &amp;&amp; !running &amp;&amp; $(&#x27;overlay&#x27;).hidden === false) {
+      e.preventDefault();
+      start();
+    }
+  });
+
+  let touchStart = null;
+  cv.addEventListener(&#x27;touchstart&#x27;, e =&gt; {
+    const t = e.touches[0];
+    touchStart = { x: t.clientX, y: t.clientY };
+  }, { passive: true });
+  cv.addEventListener(&#x27;touchend&#x27;, e =&gt; {
+    if (!touchStart) return;
+    const t = e.changedTouches[0];
+    const dx = t.clientX - touchStart.x, dy = t.clientY - touchStart.y;
+    touchStart = null;
+    if (Math.max(Math.abs(dx), Math.abs(dy)) &lt; 20) return;
+    if (Math.abs(dx) &gt; Math.abs(dy)) setDir(dx &gt; 0 ? 1 : -1, 0);
+    else setDir(0, dy &gt; 0 ? 1 : -1);
+  });
+
+  $(&#x27;play&#x27;).addEventListener(&#x27;click&#x27;, start);
+  window.addEventListener(&#x27;resize&#x27;, sizeCanvas);
+
+  $(&#x27;best&#x27;).textContent = best;
+  sizeCanvas();
+  reset();
+  requestAnimationFrame(frame);
+})();
+&lt;/script&gt;
+">Play →</button>
+    </div>
+  </article>
+
+  <article class="game">
+    <svg viewBox="0 0 160 100" role="img" aria-label="A passage of text with green, red and grey letters and a cursor">
+      <rect width="160" height="100" fill="#ffffff"/>
+      <g font-family="Georgia, serif" font-size="13">
+        <text x="12" y="34" fill="#2f7d5b">the quick</text>
+        <text x="12" y="54" fill="#c2412d">brwn fox</text>
+        <text x="12" y="74" fill="#9aa39e">jumps over</text>
+      </g>
+      <rect x="82" y="58" width="2" height="16" fill="#2f7d5b"/>
+    </svg>
+    <div class="body">
+      <h2>Typing Test</h2>
+      <p>Type a passage for 30 or 60 seconds and see your words per minute and accuracy live.</p>
+      <button class="play" type="button" data-title="Typing Test" data-src="&lt;!doctype html&gt;
+&lt;meta name=&quot;claude:viewport-fit-sides&quot; content=&quot;cover&quot;&gt;
+&lt;title&gt;Typing Test&lt;/title&gt;
+&lt;style&gt;
+  /* Layout: one centered column with a timer row, the passage, and results below. */
+  :root {
+    --bg: #f5f3ee;
+    --ink: #222a26;
+    --muted: #7a837e;
+    --pending: #9aa39e;
+    --ok: #2f7d5b;
+    --bad: #c2412d;
+    --cursor: #2f7d5b;
+    --card: #ffffff;
+    --line: rgba(34,42,38,.12);
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme=&quot;light&quot;]) {
+      --bg: #121614;
+      --ink: #e4ebe6;
+      --muted: #8b968f;
+      --pending: #5f6a63;
+      --ok: #7fd3a6;
+      --bad: #ff8a72;
+      --cursor: #7fd3a6;
+      --card: #1a201d;
+      --line: rgba(228,235,230,.12);
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme=&quot;dark&quot;] {
+    --bg: #121614;
+    --ink: #e4ebe6;
+    --muted: #8b968f;
+    --pending: #5f6a63;
+    --ok: #7fd3a6;
+    --bad: #ff8a72;
+    --cursor: #7fd3a6;
+    --card: #1a201d;
+    --line: rgba(228,235,230,.12);
+    color-scheme: dark;
+  }
+  html, body { min-height: 100%; margin: 0; background: var(--bg); color: var(--ink); }
+  body {
+    font-family: ui-sans-serif, system-ui, -apple-system, &quot;Segoe UI&quot;, sans-serif;
+    padding: max(20px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(20px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
+    box-sizing: border-box;
+  }
+  main { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 22px; }
+  header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
+  h1 { font-size: 18px; margin: 0; letter-spacing: .01em; }
+  .seg { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+  .seg button {
+    font: inherit; font-size: 14px; background: transparent; color: var(--muted); border: 0; padding: 8px 14px; cursor: pointer;
+  }
+  .seg button[aria-pressed=&quot;true&quot;] { background: var(--ink); color: var(--bg); }
+  .stats { display: flex; gap: 28px; font-variant-numeric: tabular-nums; }
+  .stat .label { font-size: 11px; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); }
+  .stat .val { font-size: 30px; font-weight: 700; line-height: 1.1; }
+  #passage {
+    background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+    padding: 26px 28px; font-size: clamp(19px, 3.2vw, 24px); line-height: 1.7;
+    height: calc(1.7em * 3 + 52px); overflow: hidden; position: relative; user-select: none;
+    font-family: ui-serif, Georgia, &quot;Times New Roman&quot;, serif;
+  }
+  #passage span { transition: color .08s; }
+  .ok { color: var(--ok); }
+  .bad { color: var(--bad); text-decoration: underline; text-decoration-color: var(--bad); }
+  .todo { color: var(--pending); }
+  .cur { background: color-mix(in srgb, var(--cursor) 22%, transparent); border-radius: 3px; box-shadow: inset 0 -2px 0 var(--cursor); }
+  .hint { color: var(--muted); font-size: 14px; text-align: center; margin: 0; }
+  #results[hidden] { display: none; }
+  #results {
+    background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 22px; text-align: center;
+  }
+  #results h2 { margin: 0 0 6px; font-size: 20px; }
+  #results p { margin: 0 0 16px; color: var(--muted); }
+  button.primary {
+    font: inherit; font-weight: 600; font-size: 15px; background: var(--ink); color: var(--bg);
+    border: 0; border-radius: 8px; padding: 10px 20px; cursor: pointer;
+  }
+  button:focus-visible { outline: 2px solid var(--cursor); outline-offset: 3px; }
+  @media (prefers-reduced-motion: reduce) { #passage span { transition: none; } }
+&lt;/style&gt;
+
+&lt;main&gt;
+  &lt;header&gt;
+    &lt;h1&gt;Typing Test&lt;/h1&gt;
+    &lt;div class=&quot;seg&quot; role=&quot;group&quot; aria-label=&quot;Duration&quot;&gt;
+      &lt;button id=&quot;d30&quot; aria-pressed=&quot;false&quot;&gt;30 s&lt;/button&gt;
+      &lt;button id=&quot;d60&quot; aria-pressed=&quot;true&quot;&gt;60 s&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/header&gt;
+
+  &lt;div class=&quot;stats&quot;&gt;
+    &lt;div class=&quot;stat&quot;&gt;&lt;div class=&quot;label&quot;&gt;Time&lt;/div&gt;&lt;div class=&quot;val&quot; id=&quot;time&quot;&gt;60&lt;/div&gt;&lt;/div&gt;
+    &lt;div class=&quot;stat&quot;&gt;&lt;div class=&quot;label&quot;&gt;WPM&lt;/div&gt;&lt;div class=&quot;val&quot; id=&quot;wpm&quot;&gt;0&lt;/div&gt;&lt;/div&gt;
+    &lt;div class=&quot;stat&quot;&gt;&lt;div class=&quot;label&quot;&gt;Accuracy&lt;/div&gt;&lt;div class=&quot;val&quot; id=&quot;acc&quot;&gt;100%&lt;/div&gt;&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div id=&quot;passage&quot; aria-live=&quot;off&quot;&gt;&lt;/div&gt;
+  &lt;p class=&quot;hint&quot; id=&quot;hint&quot;&gt;Start typing to begin. Press Backspace to correct mistakes.&lt;/p&gt;
+
+  &lt;section id=&quot;results&quot; hidden&gt;
+    &lt;h2&gt;Done&lt;/h2&gt;
+    &lt;p id=&quot;summary&quot;&gt;&lt;/p&gt;
+    &lt;button class=&quot;primary&quot; id=&quot;again&quot;&gt;Try again&lt;/button&gt;
+  &lt;/section&gt;
+&lt;/main&gt;
+
+&lt;script&gt;
+(() =&gt; {
+  const $ = id =&gt; document.getElementById(id);
+  const WORDS = `the quick brown fox jumps over lazy dog and then runs into the quiet forest where birds sing
+early morning light falls across the hills while rivers carry leaves toward the sea people gather at
+markets to trade fruit bread and stories about distant towns each season brings its own colors and its
+own work for farmers who wake before dawn to tend their fields a steady hand and a patient mind make
+good writers and good builders alike small habits repeated daily shape a life more than any single
+decision keep your eyes on the next word not the last one and let the rhythm carry you forward`
+    .split(/\s+/).filter(Boolean);
+
+  let text = &#x27;&#x27;, typed = &#x27;&#x27;, duration = 60, startAt = null, finished = false;
+  const passage = $(&#x27;passage&#x27;);
+
+  function pick() {
+    return WORDS[Math.floor(Math.random() * WORDS.length)];
+  }
+  function extend(n) {
+    let s = &#x27;&#x27;;
+    for (let i = 0; i &lt; n; i++) s += (s ? &#x27; &#x27; : &#x27;&#x27;) + pick();
+    text += (text ? &#x27; &#x27; : &#x27;&#x27;) + s;
+  }
+
+  function reset() {
+    text = &#x27;&#x27;; typed = &#x27;&#x27;; startAt = null; finished = false;
+    extend(40);
+    $(&#x27;results&#x27;).hidden = true;
+    $(&#x27;hint&#x27;).hidden = false;
+    $(&#x27;time&#x27;).textContent = duration;
+    $(&#x27;wpm&#x27;).textContent = &#x27;0&#x27;;
+    $(&#x27;acc&#x27;).textContent = &#x27;100%&#x27;;
+    render();
+  }
+
+  function stats() {
+    let correct = 0;
+    for (let i = 0; i &lt; typed.length; i++) if (typed[i] === text[i]) correct++;
+    return { correct, total: typed.length };
+  }
+
+  function render() {
+    // show a window of text that keeps the cursor on the middle line
+    const from = Math.max(0, typed.length - 42);
+    const to = Math.min(text.length, from + 230);
+    let html = &#x27;&#x27;;
+    for (let i = from; i &lt; to; i++) {
+      const ch = text[i] === &#x27; &#x27; ? &#x27;&amp;nbsp;&#x27; : text[i];
+      let cls = &#x27;todo&#x27;;
+      if (i &lt; typed.length) cls = typed[i] === text[i] ? &#x27;ok&#x27; : &#x27;bad&#x27;;
+      if (i === typed.length) cls += &#x27; cur&#x27;;
+      html += `&lt;span class=&quot;${cls}&quot;&gt;${ch}&lt;/span&gt;`;
+    }
+    passage.innerHTML = html;
+  }
+
+  function tick() {
+    if (startAt !== null &amp;&amp; !finished) {
+      const elapsed = (performance.now() - startAt) / 1000;
+      const left = Math.max(0, duration - elapsed);
+      $(&#x27;time&#x27;).textContent = Math.ceil(left);
+      const { correct } = stats();
+      const minutes = Math.max(elapsed, 1) / 60;
+      $(&#x27;wpm&#x27;).textContent = Math.round(correct / 5 / minutes);
+      if (left &lt;= 0) finish();
+    }
+    requestAnimationFrame(tick);
+  }
+
+  function finish() {
+    finished = true;
+    const { correct, total } = stats();
+    const wpm = Math.round(correct / 5 / (duration / 60));
+    const acc = total ? Math.round(correct / total * 100) : 0;
+    $(&#x27;time&#x27;).textContent = &#x27;0&#x27;;
+    $(&#x27;wpm&#x27;).textContent = wpm;
+    $(&#x27;acc&#x27;).textContent = acc + &#x27;%&#x27;;
+    $(&#x27;summary&#x27;).textContent = `${wpm} words per minute at ${acc}% accuracy over ${duration} seconds.`;
+    $(&#x27;results&#x27;).hidden = false;
+    $(&#x27;hint&#x27;).hidden = true;
+  }
+
+  window.addEventListener(&#x27;keydown&#x27;, e =&gt; {
+    if (e.target.tagName === &#x27;BUTTON&#x27;) return;
+    if (finished) return;
+    if (e.key === &#x27; &#x27;) e.preventDefault();
+    if (e.key === &#x27;Backspace&#x27;) {
+      typed = typed.slice(0, -1);
+    } else if (e.key.length === 1 &amp;&amp; !e.ctrlKey &amp;&amp; !e.metaKey &amp;&amp; !e.altKey) {
+      if (startAt === null) startAt = performance.now();
+      typed += e.key;
+      if (text.length - typed.length &lt; 120) extend(20);
+      if (typed.length &gt;= text.length) extend(20);
+    } else {
+      return;
+    }
+    $(&#x27;acc&#x27;).textContent = (stats().total ? Math.round(stats().correct / stats().total * 100) : 100) + &#x27;%&#x27;;
+    render();
+  });
+
+  function setDuration(s) {
+    duration = s;
+    $(&#x27;d30&#x27;).setAttribute(&#x27;aria-pressed&#x27;, s === 30);
+    $(&#x27;d60&#x27;).setAttribute(&#x27;aria-pressed&#x27;, s === 60);
+    reset();
+  }
+  $(&#x27;d30&#x27;).addEventListener(&#x27;click&#x27;, () =&gt; setDuration(30));
+  $(&#x27;d60&#x27;).addEventListener(&#x27;click&#x27;, () =&gt; setDuration(60));
+  $(&#x27;again&#x27;).addEventListener(&#x27;click&#x27;, reset);
+
+  reset();
+  requestAnimationFrame(tick);
+})();
+&lt;/script&gt;
+">Play →</button>
+    </div>
+  </article>
+
+  <article class="game">
+    <svg viewBox="0 0 160 100" role="img" aria-label="Overlapping colored looping curves">
+      <rect width="160" height="100" fill="#f7f4ee"/>
+      <g fill="none" stroke-width="1.2" opacity=".85">
+        <path d="M80 50 C 120 10, 150 60, 110 85 S 40 90, 60 40 S 130 20, 80 50 Z" stroke="#5b7bd5"/>
+        <path d="M80 50 C 40 90, 10 40, 50 15 S 120 10, 100 60 S 40 80, 80 50 Z" stroke="#b66bd1"/>
+        <path d="M80 50 C 100 30, 130 50, 120 70 S 70 80, 66 56 S 60 30, 80 50 Z" stroke="#e3773b"/>
+        <path d="M80 50 C 60 75, 35 60, 45 45 S 75 25, 85 42 S 95 65, 80 50 Z" stroke="#4fa37a"/>
+      </g>
+    </svg>
+    <div class="body">
+      <h2>Harmonograph</h2>
+      <p>Four swinging pendulums draw fading loops. Shape them with sliders or hit Random.</p>
+      <button class="play" type="button" data-title="Harmonograph" data-src="&lt;!doctype html&gt;
+&lt;meta name=&quot;claude:viewport-fit-sides&quot; content=&quot;cover&quot;&gt;
+&lt;title&gt;Harmonograph&lt;/title&gt;
+&lt;style&gt;
+  /* Layout: the drawing fills the window; a compact control panel sits on the right (or bottom on narrow screens). */
+  :root {
+    --bg: #f7f4ee;
+    --ink: #1f2530;
+    --muted: #6d7380;
+    --line: rgba(31,37,48,.14);
+    --accent: #3b5bdb;
+    --panel: rgba(255,255,255,.85);
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme=&quot;light&quot;]) {
+      --bg: #0d0f14;
+      --ink: #e7eaf2;
+      --muted: #8a909e;
+      --line: rgba(231,234,242,.14);
+      --accent: #8fa6ff;
+      --panel: rgba(20,23,31,.88);
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme=&quot;dark&quot;] {
+    --bg: #0d0f14;
+    --ink: #e7eaf2;
+    --muted: #8a909e;
+    --line: rgba(231,234,242,.14);
+    --accent: #8fa6ff;
+    --panel: rgba(20,23,31,.88);
+    color-scheme: dark;
+  }
+  html, body { height: 100%; margin: 0; overflow: hidden; background: var(--bg); color: var(--ink); }
+  body { font-family: ui-sans-serif, system-ui, -apple-system, &quot;Segoe UI&quot;, sans-serif; }
+  #stage { position: fixed; inset: 0; }
+  canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  #panel {
+    position: fixed; top: calc(14px + env(safe-area-inset-top, 0px)); right: max(14px, env(safe-area-inset-right, 0px));
+    width: min(280px, calc(100vw - 28px)); max-height: calc(100% - 28px); overflow-y: auto;
+    background: var(--panel); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    border: 1px solid var(--line); border-radius: 10px; padding: 16px;
+  }
+  h1 { font-size: 16px; margin: 0 0 12px; letter-spacing: .02em; }
+  .row { display: grid; grid-template-columns: 1fr 52px; align-items: center; gap: 2px 10px; margin-bottom: 10px; }
+  .row label { font-size: 13px; color: var(--muted); grid-column: 1 / -1; display: flex; justify-content: space-between; }
+  .row output { font-variant-numeric: tabular-nums; color: var(--ink); }
+  input[type=&quot;range&quot;] { width: 100%; accent-color: var(--accent); margin: 0; }
+  .btns { display: flex; gap: 8px; margin-top: 6px; }
+  button {
+    font: inherit; font-size: 14px; color: var(--ink); background: transparent; border: 1px solid var(--line);
+    border-radius: 6px; padding: 8px 12px; cursor: pointer; flex: 1;
+  }
+  button.primary { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+  button:hover { border-color: var(--accent); }
+  button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  @media (prefers-reduced-motion: reduce) { #panel { backdrop-filter: none; } }
+&lt;/style&gt;
+
+&lt;div id=&quot;stage&quot;&gt;&lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;&lt;/div&gt;
+
+&lt;div id=&quot;panel&quot;&gt;
+  &lt;h1&gt;Harmonograph&lt;/h1&gt;
+  &lt;div class=&quot;row&quot;&gt;&lt;label for=&quot;f1&quot;&gt;Pendulum A &lt;output id=&quot;o1&quot;&gt;&lt;/output&gt;&lt;/label&gt;&lt;input id=&quot;f1&quot; type=&quot;range&quot; min=&quot;1&quot; max=&quot;8&quot; step=&quot;0.01&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;row&quot;&gt;&lt;label for=&quot;f2&quot;&gt;Pendulum B &lt;output id=&quot;o2&quot;&gt;&lt;/output&gt;&lt;/label&gt;&lt;input id=&quot;f2&quot; type=&quot;range&quot; min=&quot;1&quot; max=&quot;8&quot; step=&quot;0.01&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;row&quot;&gt;&lt;label for=&quot;f3&quot;&gt;Pendulum C &lt;output id=&quot;o3&quot;&gt;&lt;/output&gt;&lt;/label&gt;&lt;input id=&quot;f3&quot; type=&quot;range&quot; min=&quot;1&quot; max=&quot;8&quot; step=&quot;0.01&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;row&quot;&gt;&lt;label for=&quot;f4&quot;&gt;Pendulum D &lt;output id=&quot;o4&quot;&gt;&lt;/output&gt;&lt;/label&gt;&lt;input id=&quot;f4&quot; type=&quot;range&quot; min=&quot;1&quot; max=&quot;8&quot; step=&quot;0.01&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;row&quot;&gt;&lt;label for=&quot;d&quot;&gt;Decay &lt;output id=&quot;od&quot;&gt;&lt;/output&gt;&lt;/label&gt;&lt;input id=&quot;d&quot; type=&quot;range&quot; min=&quot;0.001&quot; max=&quot;0.06&quot; step=&quot;0.001&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;row&quot;&gt;&lt;label for=&quot;len&quot;&gt;Length &lt;output id=&quot;olen&quot;&gt;&lt;/output&gt;&lt;/label&gt;&lt;input id=&quot;len&quot; type=&quot;range&quot; min=&quot;20&quot; max=&quot;120&quot; step=&quot;1&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;btns&quot;&gt;
+    &lt;button id=&quot;rand&quot;&gt;Random&lt;/button&gt;
+    &lt;button id=&quot;again&quot; class=&quot;primary&quot;&gt;Redraw&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+(() =&gt; {
+  const $ = id =&gt; document.getElementById(id);
+  const cv = $(&#x27;c&#x27;), ctx = cv.getContext(&#x27;2d&#x27;);
+  const inputs = [&#x27;f1&#x27;, &#x27;f2&#x27;, &#x27;f3&#x27;, &#x27;f4&#x27;, &#x27;d&#x27;, &#x27;len&#x27;];
+  let W = 0, H = 0, DPR = 1;
+
+  // Each pendulum pair produces one axis of motion; decay makes the curve spiral in.
+  let params = { f1: 3, f2: 2, f3: 3, f4: 2, d: 0.012, len: 60 };
+  let start = 0;                   // timestamp when the current drawing began
+  const DURATION = 40;             // seconds of drawing time
+
+  function resize() {
+    DPR = Math.min(window.devicePixelRatio || 1, 2);
+    W = window.innerWidth; H = window.innerHeight;
+    cv.width = Math.round(W * DPR); cv.height = Math.round(H * DPR);
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    restart();
+  }
+
+  function syncUi() {
+    for (const k of inputs) $(k).value = params[k];
+    $(&#x27;o1&#x27;).textContent = params.f1.toFixed(2);
+    $(&#x27;o2&#x27;).textContent = params.f2.toFixed(2);
+    $(&#x27;o3&#x27;).textContent = params.f3.toFixed(2);
+    $(&#x27;o4&#x27;).textContent = params.f4.toFixed(2);
+    $(&#x27;od&#x27;).textContent = params.d.toFixed(3);
+    $(&#x27;olen&#x27;).textContent = params.len;
+  }
+
+  function restart() {
+    start = performance.now();
+    ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue(&#x27;--bg&#x27;).trim();
+    ctx.fillRect(0, 0, W, H);
+  }
+
+  // position of the pen at time t (seconds)
+  function pen(t) {
+    const { f1, f2, f3, f4, d, len } = params;
+    const env = Math.exp(-d * t * 10);
+    const x = len * (Math.sin(f1 * t + 0.5) * Math.exp(-d * t) + Math.sin(f2 * t + 1.7) * Math.exp(-d * t * 0.6) * 0.8);
+    const y = len * (Math.sin(f3 * t + 2.1) * Math.exp(-d * t) + Math.sin(f4 * t) * Math.exp(-d * t * 0.6) * 0.8);
+    return [x, y];
+  }
+
+  function hueAt(p) {
+    return 210 + p * 150;           // blue through violet to warm
+  }
+
+  let lastT = 0, lastPt = null;
+  function frame(now) {
+    const elapsed = (now - start) / 1000;
+    const tEnd = Math.min(elapsed * 4, DURATION * 4); // simulated time runs faster than real time
+    const ink = getComputedStyle(document.documentElement).getPropertyValue(&#x27;--ink&#x27;).trim();
+    const cx = W / 2 + (window.innerWidth &gt; 700 ? -110 : 0), cy = H / 2;
+    const step = 0.02;
+    ctx.lineWidth = 1;
+    ctx.globalAlpha = 0.5;
+    while (lastT &lt; tEnd) {
+      const [x, y] = pen(lastT);
+      const p = lastT / (DURATION * 4);
+      if (lastPt) {
+        ctx.strokeStyle = `hsl(${hueAt(p)} 70% ${document.documentElement.dataset.theme === &#x27;light&#x27; ? 40 : 65}%)`;
+        ctx.beginPath();
+        ctx.moveTo(cx + lastPt[0], cy + lastPt[1]);
+        ctx.lineTo(cx + x, cy + y);
+        ctx.stroke();
+      }
+      lastPt = [x, y];
+      lastT += step;
+    }
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(frame);
+  }
+
+  function reset() {
+    lastT = 0; lastPt = null;
+    restart();
+  }
+
+  // ---------- controls ----------
+  for (const k of inputs) {
+    $(k).addEventListener(&#x27;input&#x27;, e =&gt; {
+      params[k] = Number(e.target.value);
+      syncUi();
+      reset();
+    });
+  }
+  $(&#x27;again&#x27;).addEventListener(&#x27;click&#x27;, reset);
+  $(&#x27;rand&#x27;).addEventListener(&#x27;click&#x27;, () =&gt; {
+    params = {
+      f1: 1 + Math.random() * 7, f2: 1 + Math.random() * 7,
+      f3: 1 + Math.random() * 7, f4: 1 + Math.random() * 7,
+      d: 0.004 + Math.random() * 0.03, len: 40 + Math.random() * 60,
+    };
+    syncUi();
+    reset();
+  });
+
+  window.addEventListener(&#x27;keydown&#x27;, e =&gt; {
+    if (e.target.tagName === &#x27;INPUT&#x27; || e.target.tagName === &#x27;BUTTON&#x27;) return;
+    if (e.code === &#x27;KeyR&#x27;) { $(&#x27;rand&#x27;).click(); }
+  });
+
+  window.addEventListener(&#x27;resize&#x27;, resize);
+
+  syncUi();
+  resize();
+  requestAnimationFrame(frame);
+})();
+&lt;/script&gt;
+">Play →</button>
+    </div>
+  </article>
+
+  <article class="game">
+    <svg viewBox="0 0 160 100" role="img" aria-label="A grid of cells with a glider shape in green">
+      <rect width="160" height="100" fill="#f3f0e8"/>
+      <g fill="#e4dfd2">
+        <rect x="8" y="8" width="144" height="84" rx="2"/>
+      </g>
+      <g fill="#2f6b4f">
+        <rect x="62" y="34" width="9" height="9"/><rect x="80" y="34" width="9" height="9"/>
+        <rect x="71" y="43" width="9" height="9"/>
+        <rect x="71" y="52" width="9" height="9"/><rect x="62" y="52" width="9" height="9"/>
+      </g>
+      <g fill="#8fbf9f"><rect x="101" y="25" width="9" height="9"/><rect x="110" y="25" width="9" height="9"/></g>
+    </svg>
+    <div class="body">
+      <h2>Life Garden</h2>
+      <p>Conway's Game of Life. Draw cells by hand or start from a pattern and watch it grow.</p>
+      <button class="play" type="button" data-title="Life Garden" data-src="&lt;!doctype html&gt;
+&lt;meta name=&quot;claude:viewport-fit-sides&quot; content=&quot;cover&quot;&gt;
+&lt;title&gt;Life Garden&lt;/title&gt;
+&lt;style&gt;
+  /* Layout: a full-window grid of cells with a slim control bar along the bottom. */
+  :root {
+    --bg: #f3f0e8;
+    --ink: #1d2a24;
+    --cell-dead: #e4dfd2;
+    --cell-alive: #2f6b4f;
+    --cell-young: #8fbf9f;
+    --muted: #6b7568;
+    --accent: #c4572c;
+    --panel: rgba(243,240,232,.92);
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme=&quot;light&quot;]) {
+      --bg: #101713;
+      --ink: #e6efe7;
+      --cell-dead: #17221c;
+      --cell-alive: #7fd4a4;
+      --cell-young: #3f8a64;
+      --muted: #8ba08f;
+      --accent: #ff8a5c;
+      --panel: rgba(16,23,19,.92);
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme=&quot;dark&quot;] {
+    --bg: #101713;
+    --ink: #e6efe7;
+    --cell-dead: #17221c;
+    --cell-alive: #7fd4a4;
+    --cell-young: #3f8a64;
+    --muted: #8ba08f;
+    --accent: #ff8a5c;
+    --panel: rgba(16,23,19,.92);
+    color-scheme: dark;
+  }
+  html, body { height: 100%; margin: 0; overflow: hidden; background: var(--bg); color: var(--ink); }
+  body { font-family: ui-sans-serif, system-ui, -apple-system, &quot;Segoe UI&quot;, sans-serif; display: flex; flex-direction: column; }
+  #stage { flex: 1; min-height: 0; position: relative; }
+  canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; cursor: crosshair; touch-action: none; }
+  #bar {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px;
+    padding: 10px max(16px, env(safe-area-inset-right, 0px)) calc(10px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
+    background: var(--panel); border-top: 1px solid rgba(127,140,128,.25);
+  }
+  #bar .title { font-weight: 700; margin-right: auto; letter-spacing: .02em; }
+  #bar .stat { font-variant-numeric: tabular-nums; font-size: 13px; color: var(--muted); min-width: 9ch; }
+  button, select, label { font: inherit; font-size: 14px; color: var(--ink); }
+  button {
+    background: transparent; border: 1px solid rgba(127,140,128,.45); border-radius: 6px; padding: 7px 12px; cursor: pointer;
+  }
+  button:hover { border-color: var(--accent); }
+  button.primary { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+  button:focus-visible, select:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  select { background: transparent; border: 1px solid rgba(127,140,128,.45); border-radius: 6px; padding: 6px 8px; }
+  label { display: inline-flex; align-items: center; gap: 8px; color: var(--muted); }
+  input[type=&quot;range&quot;] { accent-color: var(--accent); width: 110px; }
+  @media (prefers-reduced-motion: reduce) { canvas { transition: none; } }
+&lt;/style&gt;
+
+&lt;div id=&quot;stage&quot;&gt;&lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;&lt;/div&gt;
+&lt;div id=&quot;bar&quot;&gt;
+  &lt;div class=&quot;title&quot;&gt;Life Garden&lt;/div&gt;
+  &lt;span class=&quot;stat&quot; id=&quot;gen&quot;&gt;Gen 0&lt;/span&gt;
+  &lt;span class=&quot;stat&quot; id=&quot;pop&quot;&gt;0 alive&lt;/span&gt;
+  &lt;button id=&quot;run&quot; class=&quot;primary&quot;&gt;Run&lt;/button&gt;
+  &lt;button id=&quot;step&quot;&gt;Step&lt;/button&gt;
+  &lt;button id=&quot;clear&quot;&gt;Clear&lt;/button&gt;
+  &lt;select id=&quot;pattern&quot; aria-label=&quot;Pattern&quot;&gt;
+    &lt;option value=&quot;&quot;&gt;Draw by hand&lt;/option&gt;
+    &lt;option value=&quot;random&quot;&gt;Random soup&lt;/option&gt;
+    &lt;option value=&quot;glider&quot;&gt;Glider&lt;/option&gt;
+    &lt;option value=&quot;gun&quot;&gt;Glider gun&lt;/option&gt;
+    &lt;option value=&quot;rpent&quot;&gt;R-pentomino&lt;/option&gt;
+  &lt;/select&gt;
+  &lt;label&gt;Speed &lt;input id=&quot;speed&quot; type=&quot;range&quot; min=&quot;1&quot; max=&quot;30&quot; value=&quot;10&quot;&gt;&lt;/label&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+(() =&gt; {
+  const $ = id =&gt; document.getElementById(id);
+  const cv = $(&#x27;c&#x27;), ctx = cv.getContext(&#x27;2d&#x27;);
+
+  const CELL = 12;              // pixels per cell
+  let cols = 0, rows = 0;
+  let grid, age, next, nextAge;
+  let gen = 0, running = false, acc = 0;
+  let painting = null;          // true = paint alive, false = erase
+
+  const PATTERNS = {
+    glider: [[1,0],[2,1],[0,2],[1,2],[2,2]],
+    rpent: [[1,0],[2,0],[0,1],[1,1],[1,2]],
+    gun: [
+      [24,0],[22,1],[24,1],[12,2],[13,2],[20,2],[21,2],[34,2],[35,2],
+      [11,3],[15,3],[20,3],[21,3],[34,3],[35,3],[0,4],[1,4],[10,4],[16,4],[20,4],[21,4],
+      [0,5],[1,5],[10,5],[14,5],[16,5],[17,5],[22,5],[24,5],
+      [10,6],[16,6],[24,6],[11,7],[15,7],[12,8],[13,8]
+    ],
+  };
+
+  function resize() {
+    const d = Math.min(window.devicePixelRatio || 1, 2);
+    const w = $(&#x27;stage&#x27;).clientWidth, h = $(&#x27;stage&#x27;).clientHeight;
+    const newCols = Math.floor(w / CELL), newRows = Math.floor(h / CELL);
+    cv.width = Math.round(w * d); cv.height = Math.round(h * d);
+    ctx.setTransform(d, 0, 0, d, 0, 0);
+    const oldGrid = grid, oldCols = cols, oldRows = rows, oldAge = age;
+    cols = newCols; rows = newRows;
+    grid = new Uint8Array(cols * rows);
+    age = new Uint16Array(cols * rows);
+    next = new Uint8Array(cols * rows);
+    nextAge = new Uint16Array(cols * rows);
+    if (oldGrid) {
+      for (let r = 0; r &lt; Math.min(rows, oldRows); r++)
+        for (let c = 0; c &lt; Math.min(cols, oldCols); c++) {
+          grid[r * cols + c] = oldGrid[r * oldCols + c];
+          age[r * cols + c] = oldAge[r * oldCols + c];
+        }
+    }
+    draw();
+  }
+
+  function setCell(c, r, alive) {
+    if (c &lt; 0 || r &lt; 0 || c &gt;= cols || r &gt;= rows) return;
+    const i = r * cols + c;
+    if (alive &amp;&amp; !grid[i]) { grid[i] = 1; age[i] = 0; }
+    if (!alive) { grid[i] = 0; age[i] = 0; }
+  }
+
+  function stamp(list, ox, oy) {
+    for (const [c, r] of list) setCell(ox + c, oy + r, true);
+  }
+
+  function clearAll() {
+    grid.fill(0); age.fill(0); gen = 0;
+  }
+
+  function fillRandom() {
+    clearAll();
+    for (let i = 0; i &lt; grid.length; i++) if (Math.random() &lt; 0.3) { grid[i] = 1; }
+  }
+
+  function placePattern(name) {
+    clearAll();
+    if (name === &#x27;random&#x27;) { fillRandom(); return; }
+    const p = PATTERNS[name];
+    if (!p) return;
+    const ox = Math.floor(cols / 2) - 10, oy = Math.floor(rows / 2) - 5;
+    stamp(p, Math.max(0, ox), Math.max(0, oy));
+  }
+
+  // Conway&#x27;s rules on a bounded grid (edges are dead space).
+  function step() {
+    for (let r = 0; r &lt; rows; r++) {
+      for (let c = 0; c &lt; cols; c++) {
+        let n = 0;
+        for (let dr = -1; dr &lt;= 1; dr++) {
+          const rr = r + dr;
+          if (rr &lt; 0 || rr &gt;= rows) continue;
+          for (let dc = -1; dc &lt;= 1; dc++) {
+            if (dr === 0 &amp;&amp; dc === 0) continue;
+            const cc = c + dc;
+            if (cc &lt; 0 || cc &gt;= cols) continue;
+            n += grid[rr * cols + cc];
+          }
+        }
+        const i = r * cols + c;
+        const alive = grid[i] === 1;
+        if (alive ? (n === 2 || n === 3) : n === 3) {
+          next[i] = 1;
+          nextAge[i] = alive ? Math.min(65535, age[i] + 1) : 0;
+        } else {
+          next[i] = 0;
+          nextAge[i] = 0;
+        }
+      }
+    }
+    [grid, next] = [next, grid];
+    [age, nextAge] = [nextAge, age];
+    gen++;
+  }
+
+  function draw() {
+    const css = getComputedStyle(document.documentElement);
+    const dead = css.getPropertyValue(&#x27;--cell-dead&#x27;).trim();
+    const alive = css.getPropertyValue(&#x27;--cell-alive&#x27;).trim();
+    const young = css.getPropertyValue(&#x27;--cell-young&#x27;).trim();
+    const w = cols * CELL, h = rows * CELL;
+    ctx.fillStyle = dead;
+    ctx.fillRect(0, 0, w, h);
+    const pad = 2;
+    for (let r = 0; r &lt; rows; r++) {
+      for (let c = 0; c &lt; cols; c++) {
+        const i = r * cols + c;
+        if (!grid[i]) continue;
+        ctx.fillStyle = age[i] &lt; 3 ? young : alive;
+        ctx.fillRect(c * CELL + pad, r * CELL + pad, CELL - pad * 2, CELL - pad * 2);
+      }
+    }
+    let pop = 0;
+    for (let i = 0; i &lt; grid.length; i++) pop += grid[i];
+    $(&#x27;gen&#x27;).textContent = &#x27;Gen &#x27; + gen;
+    $(&#x27;pop&#x27;).textContent = pop + &#x27; alive&#x27;;
+  }
+
+  function cellAt(clientX, clientY) {
+    const rect = cv.getBoundingClientRect();
+    return [Math.floor((clientX - rect.left) / CELL), Math.floor((clientY - rect.top) / CELL)];
+  }
+
+  // ---------- input ----------
+  cv.addEventListener(&#x27;pointerdown&#x27;, e =&gt; {
+    if (running) return;
+    const [c, r] = cellAt(e.clientX, e.clientY);
+    painting = !(c &gt;= 0 &amp;&amp; r &gt;= 0 &amp;&amp; c &lt; cols &amp;&amp; r &lt; rows &amp;&amp; grid[r * cols + c]);
+    setCell(c, r, painting);
+    cv.setPointerCapture(e.pointerId);
+    draw();
+  });
+  cv.addEventListener(&#x27;pointermove&#x27;, e =&gt; {
+    if (painting === null || running) return;
+    const [c, r] = cellAt(e.clientX, e.clientY);
+    setCell(c, r, painting);
+    draw();
+  });
+  const endPaint = () =&gt; { painting = null; };
+  cv.addEventListener(&#x27;pointerup&#x27;, endPaint);
+  cv.addEventListener(&#x27;pointercancel&#x27;, endPaint);
+
+  function setRunning(v) {
+    running = v;
+    $(&#x27;run&#x27;).textContent = running ? &#x27;Pause&#x27; : &#x27;Run&#x27;;
+    $(&#x27;run&#x27;).classList.toggle(&#x27;primary&#x27;, !running);
+  }
+
+  $(&#x27;run&#x27;).addEventListener(&#x27;click&#x27;, () =&gt; setRunning(!running));
+  $(&#x27;step&#x27;).addEventListener(&#x27;click&#x27;, () =&gt; { setRunning(false); step(); draw(); });
+  $(&#x27;clear&#x27;).addEventListener(&#x27;click&#x27;, () =&gt; { setRunning(false); clearAll(); draw(); });
+  $(&#x27;pattern&#x27;).addEventListener(&#x27;change&#x27;, e =&gt; {
+    if (!e.target.value) return;
+    setRunning(false);
+    placePattern(e.target.value);
+    e.target.value = &#x27;&#x27;;
+    draw();
+  });
+
+  window.addEventListener(&#x27;keydown&#x27;, e =&gt; {
+    if (e.target.tagName === &#x27;SELECT&#x27; || e.target.tagName === &#x27;INPUT&#x27;) return;
+    if (e.code === &#x27;Space&#x27;) { e.preventDefault(); setRunning(!running); }
+    if (e.code === &#x27;KeyS&#x27;) { setRunning(false); step(); draw(); }
+    if (e.code === &#x27;KeyC&#x27;) { setRunning(false); clearAll(); draw(); }
+  });
+
+  window.addEventListener(&#x27;resize&#x27;, resize);
+
+  // ---------- loop ----------
+  // seed a starting pattern so the page isn&#x27;t empty on first view
+  resize();
+  placePattern(&#x27;gun&#x27;);
+  draw();
+
+  let last = performance.now();
+  function frame(now) {
+    const dt = now - last;
+    last = now;
+    if (running) {
+      const perSec = Number($(&#x27;speed&#x27;).value);
+      acc += dt * perSec / 1000;
+      while (acc &gt;= 1) { step(); acc -= 1; }
+      draw();
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+&lt;/script&gt;
+">Play →</button>
+    </div>
+  </article>
+
+  <article class="game">
+    <svg viewBox="0 0 160 100" role="img" aria-label="A player in the middle of an arena surrounded by green zombies">
+      <rect width="160" height="100" fill="#0e1210"/>
+      <g stroke="#151c18" stroke-width="1">
+        <line x1="0" y1="25" x2="160" y2="25"/><line x1="0" y1="50" x2="160" y2="50"/><line x1="0" y1="75" x2="160" y2="75"/>
+        <line x1="40" y1="0" x2="40" y2="100"/><line x1="80" y1="0" x2="80" y2="100"/><line x1="120" y1="0" x2="120" y2="100"/>
+      </g>
+      <line x1="80" y1="50" x2="128" y2="34" stroke="#ffd27a" stroke-width="2"/>
+      <circle cx="80" cy="50" r="7" fill="#5c7a63"/>
+      <g fill="#78aa6f"><circle cx="30" cy="22" r="6"/><circle cx="18" cy="70" r="6"/><circle cx="48" cy="86" r="6"/><circle cx="138" cy="74" r="6"/><circle cx="110" cy="14" r="6"/><circle cx="142" cy="44" r="6"/></g>
+    </svg>
+    <div class="body">
+      <h2>Zombie Wave</h2>
+      <p>Top-down shooter. Waves of zombies close in from every edge, so aim well and reload.</p>
+      <button class="play" type="button" data-title="Zombie Wave" data-src="&lt;!doctype html&gt;
+&lt;meta name=&quot;claude:viewport-fit-sides&quot; content=&quot;cover&quot;&gt;
+&lt;title&gt;Zombie Wave&lt;/title&gt;
+&lt;style&gt;
+  /* Layout: full-window top-down arena; HUD sits on the edges, the overlay covers the middle. */
+  :root {
+    --bg: #0e1210;
+    --grid: #151c18;
+    --fg: #e9efe9;
+    --muted: #8a998c;
+    --accent: #ff7a3d;
+    --danger: #ff4d4d;
+    --ok: #7be38f;
+    color-scheme: dark;
+  }
+  html, body { height: 100%; margin: 0; overflow: hidden; background: var(--bg); color: var(--fg); }
+  body { font-family: ui-sans-serif, system-ui, -apple-system, &quot;Segoe UI&quot;, sans-serif; }
+  canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; cursor: crosshair; }
+
+  #hud { position: fixed; inset: 0; pointer-events: none; font-variant-numeric: tabular-nums; }
+  .top { position: absolute; top: calc(14px + env(safe-area-inset-top, 0px)); left: max(16px, env(safe-area-inset-left, 0px)); right: max(16px, env(safe-area-inset-right, 0px)); display: flex; justify-content: space-between; gap: 16px; }
+  .label { text-transform: uppercase; letter-spacing: .12em; font-size: 11px; color: var(--muted); }
+  .big { font-size: 26px; font-weight: 700; line-height: 1.1; }
+  #wave { color: var(--accent); }
+  .bottom { position: absolute; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); left: max(16px, env(safe-area-inset-left, 0px)); right: max(16px, env(safe-area-inset-right, 0px)); display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; }
+  #hpwrap { width: min(260px, 55vw); }
+  #hpbar { height: 10px; background: rgba(255,255,255,.12); border-radius: 2px; overflow: hidden; margin-top: 6px; }
+  #hpfill { height: 100%; width: 100%; background: var(--ok); transition: width .12s, background .3s; }
+  #ammo { text-align: right; }
+  #ammo .big { font-size: 26px; }
+
+  #overlay {
+    position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 12px; background: rgba(6,9,7,.78); text-align: center; padding: 24px;
+  }
+  #overlay[hidden] { display: none; }
+  #overlay h1 { margin: 0; font-size: clamp(34px, 8vw, 60px); letter-spacing: .02em; }
+  #overlay p { margin: 0; color: var(--muted); max-width: 46ch; line-height: 1.55; }
+  #overlay kbd { font-family: ui-monospace, monospace; border: 1px solid rgba(255,255,255,.2); border-radius: 4px; padding: 1px 6px; color: var(--fg); }
+  #stats { color: var(--fg) !important; font-variant-numeric: tabular-nums; }
+  button {
+    margin-top: 10px; font: inherit; font-weight: 700; font-size: 16px; color: #111;
+    background: var(--accent); border: 0; border-radius: 6px; padding: 12px 28px; cursor: pointer;
+  }
+  button:focus-visible { outline: 2px solid var(--fg); outline-offset: 3px; }
+
+  #vignette { position: fixed; inset: 0; pointer-events: none; opacity: 0; transition: opacity .15s; }
+  @media (prefers-reduced-motion: reduce) { #hpfill, #vignette { transition: none; } }
+&lt;/style&gt;
+
+&lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
+&lt;div id=&quot;vignette&quot;&gt;&lt;/div&gt;
+
+&lt;div id=&quot;hud&quot;&gt;
+  &lt;div class=&quot;top&quot;&gt;
+    &lt;div&gt;
+      &lt;div class=&quot;label&quot;&gt;Wave&lt;/div&gt;
+      &lt;div class=&quot;big&quot; id=&quot;wave&quot;&gt;0&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div style=&quot;text-align:right&quot;&gt;
+      &lt;div class=&quot;label&quot;&gt;Score&lt;/div&gt;
+      &lt;div class=&quot;big&quot; id=&quot;score&quot;&gt;0&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;bottom&quot;&gt;
+    &lt;div id=&quot;hpwrap&quot;&gt;
+      &lt;div class=&quot;label&quot;&gt;Health &lt;span id=&quot;hpnum&quot;&gt;100&lt;/span&gt;&lt;/div&gt;
+      &lt;div id=&quot;hpbar&quot;&gt;&lt;div id=&quot;hpfill&quot;&gt;&lt;/div&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div id=&quot;ammo&quot;&gt;
+      &lt;div class=&quot;label&quot;&gt;Ammo&lt;/div&gt;
+      &lt;div class=&quot;big&quot; id=&quot;ammoNum&quot;&gt;10 / 10&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;overlay&quot;&gt;
+  &lt;h1 id=&quot;ovTitle&quot;&gt;Zombie Wave&lt;/h1&gt;
+  &lt;p id=&quot;ovText&quot;&gt;The dead are coming from every side. Hold out as long as you can.&lt;/p&gt;
+  &lt;p id=&quot;stats&quot; hidden&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;kbd&gt;W A S D&lt;/kbd&gt; move &amp;nbsp; &lt;kbd&gt;Mouse&lt;/kbd&gt; aim &amp;nbsp; &lt;kbd&gt;Click&lt;/kbd&gt; hold to fire &amp;nbsp; &lt;kbd&gt;R&lt;/kbd&gt; reload &amp;nbsp; &lt;kbd&gt;P&lt;/kbd&gt; pause&lt;/p&gt;
+  &lt;button id=&quot;play&quot;&gt;Start&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+(() =&gt; {
+  const $ = id =&gt; document.getElementById(id);
+  const cv = $(&#x27;c&#x27;), ctx = cv.getContext(&#x27;2d&#x27;);
+  let W = 0, H = 0, DPR = 1;
+
+  function resize() {
+    DPR = Math.min(window.devicePixelRatio || 1, 2);
+    W = window.innerWidth; H = window.innerHeight;
+    cv.width = Math.round(W * DPR); cv.height = Math.round(H * DPR);
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+  }
+  window.addEventListener(&#x27;resize&#x27;, resize);
+  resize();
+
+  const MAG = 10, RELOAD = 1.1, PLAYER_R = 14, BULLET_SPEED = 900;
+  const rand = (a, b) =&gt; a + Math.random() * (b - a);
+  const clamp = (v, a, b) =&gt; Math.max(a, Math.min(b, v));
+
+  let state = &#x27;menu&#x27;;            // menu | play | pause | over
+  let player, zombies, bullets, parts;
+  let wave, toSpawn, spawnT, betweenT, waveDone, score, kills, hurtT, announceT, announceText;
+  const keys = {};
+  const mouse = { x: 0, y: 0, down: false };
+
+  function reset() {
+    player = { x: W / 2, y: H / 2, hp: 100, angle: 0, cool: 0, reload: 0, mag: MAG, flash: 0 };
+    zombies = []; bullets = []; parts = [];
+    wave = 0; score = 0; kills = 0; toSpawn = 0; spawnT = 0;
+    betweenT = 1.5; waveDone = true; hurtT = 0; announceT = 0;
+  }
+
+  function say(text, t = 2) { announceText = text; announceT = t; }
+
+  function startWave(n) {
+    wave = n;
+    toSpawn = 4 + n * 3;
+    spawnT = 1;
+    waveDone = false;
+    say(&#x27;Wave &#x27; + n, 2);
+  }
+
+  function spawnZombie() {
+    // spawn just outside one of the four edges
+    const side = Math.floor(Math.random() * 4);
+    let x, y;
+    if (side === 0) { x = rand(0, W); y = -30; }
+    else if (side === 1) { x = W + 30; y = rand(0, H); }
+    else if (side === 2) { x = rand(0, W); y = H + 30; }
+    else { x = -30; y = rand(0, H); }
+    const hp = 2 + Math.floor(wave / 3);
+    zombies.push({
+      x, y, r: 14, hp, maxHp: hp,
+      speed: 45 + wave * 4 + rand(0, 25),
+      atk: rand(0, 0.5), hit: 0, ang: 0,
+      tint: Math.random() &lt; 0.5 ? [120, 170, 110] : [150, 160, 120],
+    });
+  }
+
+  function burst(x, y, n, color) {
+    for (let i = 0; i &lt; n; i++) {
+      const a = rand(0, Math.PI * 2), s = rand(40, 220);
+      parts.push({ x, y, vx: Math.cos(a) * s, vy: Math.sin(a) * s, life: rand(0.3, 0.7), max: 0.7, color });
+    }
+  }
+
+  function endGame() {
+    state = &#x27;over&#x27;;
+    $(&#x27;ovTitle&#x27;).textContent = &#x27;Overrun&#x27;;
+    $(&#x27;ovText&#x27;).textContent = &#x27;The horde got through.&#x27;;
+    $(&#x27;stats&#x27;).textContent = `Wave ${wave}  ·  ${kills} zombies  ·  Score ${score}`;
+    $(&#x27;stats&#x27;).hidden = false;
+    $(&#x27;play&#x27;).textContent = &#x27;Play again&#x27;;
+    $(&#x27;overlay&#x27;).hidden = false;
+  }
+
+  function showMenu(title, text, btn) {
+    $(&#x27;ovTitle&#x27;).textContent = title;
+    $(&#x27;ovText&#x27;).textContent = text;
+    $(&#x27;stats&#x27;).hidden = true;
+    $(&#x27;play&#x27;).textContent = btn;
+    $(&#x27;overlay&#x27;).hidden = false;
+  }
+
+  function update(dt) {
+    if (state !== &#x27;play&#x27;) return;
+
+    // movement
+    const ix = (keys.KeyD || keys.ArrowRight ? 1 : 0) - (keys.KeyA || keys.ArrowLeft ? 1 : 0);
+    const iy = (keys.KeyS || keys.ArrowDown ? 1 : 0) - (keys.KeyW || keys.ArrowUp ? 1 : 0);
+    if (ix || iy) {
+      const l = Math.hypot(ix, iy);
+      player.x += ix / l * 210 * dt;
+      player.y += iy / l * 210 * dt;
+    }
+    player.x = clamp(player.x, PLAYER_R, W - PLAYER_R);
+    player.y = clamp(player.y, PLAYER_R, H - PLAYER_R);
+    player.angle = Math.atan2(mouse.y - player.y, mouse.x - player.x);
+
+    // reload + firing
+    player.cool -= dt;
+    player.flash = Math.max(0, player.flash - dt);
+    if (player.reload &gt; 0) {
+      player.reload -= dt;
+      if (player.reload &lt;= 0) { player.reload = 0; player.mag = MAG; }
+    }
+    if (mouse.down &amp;&amp; player.cool &lt;= 0 &amp;&amp; player.reload &lt;= 0) {
+      if (player.mag &gt; 0) {
+        player.mag--;
+        player.cool = 0.15;
+        player.flash = 0.05;
+        const a = player.angle + rand(-0.03, 0.03);
+        bullets.push({
+          x: player.x + Math.cos(a) * 22, y: player.y + Math.sin(a) * 22,
+          px: 0, py: 0, vx: Math.cos(a) * BULLET_SPEED, vy: Math.sin(a) * BULLET_SPEED, life: 1,
+        });
+        if (player.mag === 0) player.reload = RELOAD;
+      } else {
+        player.reload = RELOAD;
+      }
+    }
+
+    // bullets
+    for (const b of bullets) {
+      b.px = b.x; b.py = b.y;
+      b.x += b.vx * dt; b.y += b.vy * dt;
+      b.life -= dt;
+      if (b.x &lt; -20 || b.x &gt; W + 20 || b.y &lt; -20 || b.y &gt; H + 20) b.life = 0;
+      for (const z of zombies) {
+        if (z.dead || b.life &lt;= 0) continue;
+        if (Math.hypot(b.x - z.x, b.y - z.y) &lt; z.r + 2) {
+          z.hp -= 1;
+          z.hit = 0.08;
+          burst(b.x, b.y, 3, &#x27;#9bd18a&#x27;);
+          b.life = 0;
+          if (z.hp &lt;= 0) {
+            z.dead = true;
+            kills++;
+            score += 10 + wave * 2;
+            burst(z.x, z.y, 14, &#x27;#6e9a5f&#x27;);
+          }
+        }
+      }
+    }
+    bullets = bullets.filter(b =&gt; b.life &gt; 0);
+
+    // zombies
+    for (const z of zombies) {
+      if (z.dead) continue;
+      const dx = player.x - z.x, dy = player.y - z.y, d = Math.hypot(dx, dy) || 1;
+      z.ang = Math.atan2(dy, dx);
+      if (d &gt; z.r + PLAYER_R - 2) {
+        z.x += dx / d * z.speed * dt;
+        z.y += dy / d * z.speed * dt;
+      }
+      z.atk -= dt;
+      z.hit -= dt;
+      if (d &lt; z.r + PLAYER_R + 4 &amp;&amp; z.atk &lt;= 0) {
+        player.hp -= 10;
+        z.atk = 0.9;
+        hurtT = 0.3;
+      }
+    }
+    // push apart so zombies don&#x27;t stack
+    for (let i = 0; i &lt; zombies.length; i++) {
+      for (let j = i + 1; j &lt; zombies.length; j++) {
+        const a = zombies[i], b = zombies[j];
+        if (a.dead || b.dead) continue;
+        const dx = b.x - a.x, dy = b.y - a.y, d = Math.hypot(dx, dy) || 0.01;
+        const min = a.r + b.r - 2;
+        if (d &lt; min) {
+          const push = (min - d) / 2;
+          a.x -= dx / d * push; a.y -= dy / d * push;
+          b.x += dx / d * push; b.y += dy / d * push;
+        }
+      }
+    }
+    zombies = zombies.filter(z =&gt; !z.dead);
+
+    // spawning and waves
+    if (!waveDone) {
+      if (toSpawn &gt; 0) {
+        spawnT -= dt;
+        if (spawnT &lt;= 0) {
+          spawnZombie();
+          toSpawn--;
+          spawnT = Math.max(0.25, 1.3 - wave * 0.06);
+        }
+      } else if (zombies.length === 0) {
+        waveDone = true;
+        betweenT = 3.5;
+        player.hp = Math.min(100, player.hp + 25);
+        say(&#x27;Wave &#x27; + wave + &#x27; cleared&#x27;, 2.5);
+      }
+    } else {
+      betweenT -= dt;
+      if (betweenT &lt;= 0) startWave(wave + 1);
+    }
+
+    // particles
+    for (const p of parts) {
+      p.x += p.vx * dt; p.y += p.vy * dt;
+      p.vx *= 0.9; p.vy *= 0.9;
+      p.life -= dt;
+    }
+    parts = parts.filter(p =&gt; p.life &gt; 0);
+
+    hurtT = Math.max(0, hurtT - dt);
+    announceT = Math.max(0, announceT - dt);
+
+    if (player.hp &lt;= 0) { player.hp = 0; endGame(); }
+  }
+
+  function drawGrid() {
+    ctx.fillStyle = getCss(&#x27;--bg&#x27;);
+    ctx.fillRect(0, 0, W, H);
+    ctx.strokeStyle = getCss(&#x27;--grid&#x27;);
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    for (let x = 0; x &lt; W; x += 48) { ctx.moveTo(x + 0.5, 0); ctx.lineTo(x + 0.5, H); }
+    for (let y = 0; y &lt; H; y += 48) { ctx.moveTo(0, y + 0.5); ctx.lineTo(W, y + 0.5); }
+    ctx.stroke();
+  }
+
+  const cssCache = {};
+  function getCss(name) {
+    if (!cssCache[name]) cssCache[name] = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    return cssCache[name];
+  }
+
+  function draw() {
+    drawGrid();
+
+    // blood and sparks
+    for (const p of parts) {
+      ctx.globalAlpha = Math.max(0, p.life / p.max);
+      ctx.fillStyle = p.color;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, 2.5, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+
+    // zombies
+    for (const z of zombies) {
+      const [r, g, b] = z.tint;
+      ctx.fillStyle = z.hit &gt; 0 ? &#x27;#ffffff&#x27; : `rgb(${r},${g},${b})`;
+      ctx.beginPath();
+      ctx.arc(z.x, z.y, z.r, 0, Math.PI * 2);
+      ctx.fill();
+      // eyes facing the player
+      ctx.fillStyle = &#x27;#ff5a4e&#x27;;
+      for (const side of [-0.45, 0.45]) {
+        const ex = z.x + Math.cos(z.ang + side) * 7, ey = z.y + Math.sin(z.ang + side) * 7;
+        ctx.beginPath();
+        ctx.arc(ex, ey, 2, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      // health bar for damaged zombies
+      if (z.hp &lt; z.maxHp) {
+        ctx.fillStyle = &#x27;rgba(0,0,0,.5)&#x27;;
+        ctx.fillRect(z.x - 14, z.y - 24, 28, 4);
+        ctx.fillStyle = &#x27;#ff7a3d&#x27;;
+        ctx.fillRect(z.x - 14, z.y - 24, 28 * (z.hp / z.maxHp), 4);
+      }
+    }
+
+    // bullets
+    ctx.strokeStyle = &#x27;#ffd27a&#x27;;
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    for (const b of bullets) {
+      ctx.moveTo(b.x - b.vx * 0.012, b.y - b.vy * 0.012);
+      ctx.lineTo(b.x, b.y);
+    }
+    ctx.stroke();
+
+    // player
+    ctx.save();
+    ctx.translate(player.x, player.y);
+    ctx.rotate(player.angle);
+    ctx.fillStyle = &#x27;#3a4a3e&#x27;;
+    ctx.fillRect(-4, -14, 8, 28);          // gun arm
+    ctx.fillStyle = &#x27;#2b3b30&#x27;;
+    ctx.fillRect(4, -5, 20, 10);           // gun barrel
+    ctx.beginPath();
+    ctx.fillStyle = &#x27;#5c7a63&#x27;;
+    ctx.arc(0, 0, PLAYER_R, 0, Math.PI * 2);
+    ctx.fill();
+    if (player.flash &gt; 0) {
+      ctx.fillStyle = &#x27;#ffd27a&#x27;;
+      ctx.beginPath();
+      ctx.arc(26, 0, 7, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.restore();
+
+    // crosshair
+    if (state === &#x27;play&#x27;) {
+      ctx.strokeStyle = &#x27;rgba(233,239,233,.7)&#x27;;
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.arc(mouse.x, mouse.y, 7, 0, Math.PI * 2);
+      ctx.moveTo(mouse.x - 12, mouse.y); ctx.lineTo(mouse.x - 4, mouse.y);
+      ctx.moveTo(mouse.x + 12, mouse.y); ctx.lineTo(mouse.x + 4, mouse.y);
+      ctx.moveTo(mouse.x, mouse.y - 12); ctx.lineTo(mouse.x, mouse.y - 4);
+      ctx.moveTo(mouse.x, mouse.y + 12); ctx.lineTo(mouse.x, mouse.y + 4);
+      ctx.stroke();
+    }
+
+    // wave announcement
+    if (announceT &gt; 0 &amp;&amp; announceText) {
+      ctx.globalAlpha = Math.min(1, announceT);
+      ctx.fillStyle = getCss(&#x27;--fg&#x27;);
+      ctx.font = &#x27;700 40px ui-sans-serif, system-ui, sans-serif&#x27;;
+      ctx.textAlign = &#x27;center&#x27;;
+      ctx.textBaseline = &#x27;middle&#x27;;
+      ctx.fillText(announceText, W / 2, H * 0.32);
+      ctx.globalAlpha = 1;
+    }
+  }
+
+  function updateHud() {
+    $(&#x27;wave&#x27;).textContent = wave;
+    $(&#x27;score&#x27;).textContent = score;
+    $(&#x27;hpnum&#x27;).textContent = Math.ceil(player.hp);
+    $(&#x27;hpfill&#x27;).style.width = (player.hp / 100 * 100) + &#x27;%&#x27;;
+    $(&#x27;hpfill&#x27;).style.background = player.hp &gt; 50 ? &#x27;var(--ok)&#x27; : player.hp &gt; 25 ? &#x27;var(--accent)&#x27; : &#x27;var(--danger)&#x27;;
+    $(&#x27;ammoNum&#x27;).textContent = player.reload &gt; 0 ? &#x27;Reloading&#x27; : `${player.mag} / ${MAG}`;
+    $(&#x27;vignette&#x27;).style.opacity = hurtT &gt; 0 ? 0.9 : 0;
+    $(&#x27;vignette&#x27;).style.background = &#x27;radial-gradient(circle, transparent 45%, rgba(255,40,40,.6))&#x27;;
+  }
+
+  function start() {
+    reset();
+    state = &#x27;play&#x27;;
+    $(&#x27;overlay&#x27;).hidden = true;
+  }
+
+  function togglePause() {
+    if (state === &#x27;play&#x27;) {
+      state = &#x27;pause&#x27;;
+      showMenu(&#x27;Paused&#x27;, &#x27;Press P or click Resume.&#x27;, &#x27;Resume&#x27;);
+    } else if (state === &#x27;pause&#x27;) {
+      state = &#x27;play&#x27;;
+      $(&#x27;overlay&#x27;).hidden = true;
+    }
+  }
+
+  // ---------- input ----------
+  $(&#x27;play&#x27;).addEventListener(&#x27;click&#x27;, () =&gt; {
+    if (state === &#x27;pause&#x27;) togglePause();
+    else start();
+  });
+  window.addEventListener(&#x27;keydown&#x27;, e =&gt; {
+    keys[e.code] = true;
+    if ([&#x27;Space&#x27;, &#x27;ArrowUp&#x27;, &#x27;ArrowDown&#x27;, &#x27;ArrowLeft&#x27;, &#x27;ArrowRight&#x27;].includes(e.code)) e.preventDefault();
+    if (e.code === &#x27;KeyR&#x27; &amp;&amp; state === &#x27;play&#x27; &amp;&amp; player.mag &lt; MAG &amp;&amp; player.reload &lt;= 0) player.reload = RELOAD;
+    if (e.code === &#x27;KeyP&#x27; &amp;&amp; (state === &#x27;play&#x27; || state === &#x27;pause&#x27;)) togglePause();
+  });
+  window.addEventListener(&#x27;keyup&#x27;, e =&gt; { keys[e.code] = false; });
+  window.addEventListener(&#x27;pointermove&#x27;, e =&gt; { mouse.x = e.clientX; mouse.y = e.clientY; });
+  window.addEventListener(&#x27;pointerdown&#x27;, e =&gt; {
+    mouse.x = e.clientX; mouse.y = e.clientY;
+    if (state === &#x27;play&#x27; &amp;&amp; e.button === 0) mouse.down = true;
+  });
+  window.addEventListener(&#x27;pointerup&#x27;, () =&gt; { mouse.down = false; });
+  window.addEventListener(&#x27;blur&#x27;, () =&gt; { mouse.down = false; keys.length = 0; for (const k in keys) keys[k] = false; });
+
+  // ---------- loop ----------
+  reset();
+  showMenu(&#x27;Zombie Wave&#x27;, &#x27;The dead are coming from every side. Hold out as long as you can.&#x27;, &#x27;Start&#x27;);
+  player.mag = MAG;
+
+  let last = performance.now();
+  function frame(now) {
+    const dt = Math.min(0.05, (now - last) / 1000);
+    last = now;
+    update(dt);
+    draw();
+    updateHud();
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+&lt;/script&gt;
+">Play →</button>
+    </div>
+  </article>
+
+</main>
+
+<div id="player" hidden>
+  <div class="bar"><span id="ptitle"></span><button id="pclose" type="button">Back to gallery</button></div>
+  <iframe id="pframe" sandbox="allow-scripts" title="Game"></iframe>
+</div>
+<script>
+(() => {
+  const player = document.getElementById('player');
+  const frame = document.getElementById('pframe');
+  function open(btn) {
+    document.getElementById('ptitle').textContent = btn.dataset.title;
+    frame.srcdoc = btn.dataset.src;
+    player.hidden = false;
+  }
+  function close() {
+    player.hidden = true;
+    frame.srcdoc = '';
+  }
+  document.querySelectorAll('.play').forEach(b => b.addEventListener('click', () => open(b)));
+  document.getElementById('pclose').addEventListener('click', close);
+  window.addEventListener('keydown', e => { if (e.key === 'Escape' && !player.hidden) close(); });
+})();
+</script>
+</body>
+</html>
+
+</body></html>
